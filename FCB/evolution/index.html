@@ -10,51 +10,71 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         :root {
-            --bb-navy: #071D37; /* Corporate Dark Blue */
-            --bb-navy-light: #0B2545;
-            --bb-blue: #00A8E8;
-            --bb-bg: #F0F4F8;
+            /* Backbase Brand Colors */
+            --bb-navy: #041E42; /* Backbase Primary Navy */
+            --bb-navy-light: #0A2D5C;
+            --bb-blue: #0066FF; /* Backbase Electric Blue */
+            --bb-blue-light: #97B1FF;
+            --bb-cyan: #00D4FF; /* Accent Cyan */
+            --bb-bg: #FFFFFF;
+            --bb-bg-subtle: #F8FAFC;
             --bb-card-bg: #FFFFFF;
-            --bb-text-main: #102A43;
-            --bb-text-muted: #627D98;
-            --bb-border: #D9E2EC;
+            --bb-text-main: #0F172A;
+            --bb-text-muted: #64748B;
+            --bb-border: #E2E8F0;
+            --bb-border-light: #F1F5F9;
+
+            /* Backbase Animation Timing */
+            --bb-transition: cubic-bezier(0.625, 0.05, 0, 1);
+            --bb-transition-fast: cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: var(--bb-bg);
             color: var(--bb-text-main);
+            letter-spacing: -0.01em;
         }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bb-bg); 
+            background: var(--bb-bg-subtle);
         }
         ::-webkit-scrollbar-thumb {
-            background: #BCCCDC; 
-            border-radius: 4px;
+            background: var(--bb-border);
+            border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #829AB1; 
+            background: var(--bb-text-muted);
         }
 
-        /* Gradient Text */
+        /* Gradient Text - Backbase Style */
         .text-gradient-blue {
             background: linear-gradient(135deg, var(--bb-navy) 0%, var(--bb-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Cards */
+        /* Cards - Clean Backbase Style */
         .glass-panel {
             background: var(--bb-card-bg);
             border: 1px solid var(--bb-border);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s var(--bb-transition);
+        }
+
+        .glass-panel:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
         /* Connector Lines */
@@ -64,7 +84,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #D9E2EC;
+            background: var(--bb-border);
             z-index: 0;
         }
         .connector-line-active {
@@ -74,39 +94,83 @@
             width: 2px;
             background: linear-gradient(to bottom, var(--bb-blue), var(--bb-navy));
             z-index: 1;
-            transition: height 0.3s ease;
+            transition: height 0.5s var(--bb-transition);
         }
-        
-        /* Architecture Layer Styles - DARK BLUE BOXES */
+
+        /* Architecture Layer Styles - Backbase Navy */
         .layer-box {
             background: var(--bb-navy);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 6px rgba(7, 29, 55, 0.2);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 2px 8px rgba(4, 30, 66, 0.15);
             color: white;
+            transition: all 0.5s var(--bb-transition);
         }
         .layer-box.active {
-            border-left: 4px solid var(--bb-blue);
+            border-left: 3px solid var(--bb-blue);
         }
         .layer-box.highlight {
             border-color: var(--bb-blue);
-            background: linear-gradient(90deg, var(--bb-navy) 0%, #0B2545 100%);
-            border-left: 4px solid #38BDF8;
-            box-shadow: 0 0 15px rgba(0, 168, 232, 0.15);
+            background: linear-gradient(90deg, var(--bb-navy) 0%, var(--bb-navy-light) 100%);
+            border-left: 3px solid var(--bb-cyan);
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.15), 0 0 0 1px rgba(0, 212, 255, 0.1);
+            transform: translateX(2px);
         }
-        
-        /* Vertical Pillars - DARK BLUE BOXES */
+
+        /* Vertical Pillars - Backbase Navy */
         .pillar-box {
             background: var(--bb-navy);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
             color: white;
-            box-shadow: 0 4px 6px rgba(7, 29, 55, 0.2);
+            box-shadow: 0 2px 8px rgba(4, 30, 66, 0.15);
+            transition: all 0.5s var(--bb-transition);
         }
         .pillar-box.highlight {
             border-color: var(--bb-blue);
-            border-top: 4px solid #38BDF8;
-            background: linear-gradient(180deg, var(--bb-navy) 0%, #0B2545 100%);
+            border-top: 3px solid var(--bb-cyan);
+            background: linear-gradient(180deg, var(--bb-navy) 0%, var(--bb-navy-light) 100%);
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.15);
         }
-        
+
+        /* Backbase Button Style */
+        .bb-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            transition: all 0.3s var(--bb-transition-fast);
+            overflow: hidden;
+        }
+
+        .bb-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s var(--bb-transition);
+        }
+
+        .bb-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Header Styling */
+        .bb-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--bb-border-light);
+        }
+
     </style>
 </head>
 <body>
@@ -337,42 +401,42 @@
 
         const ArchitectureLayer = ({ label, sub, status, highlight, icon: Icon }) => {
             const isHidden = status === 'hidden';
-            let styles = "opacity-40 grayscale border-transparent bg-gray-50 text-slate-400";
+            let styles = "opacity-40 grayscale border-transparent bg-[#F8FAFC] text-[#94A3B8]";
             if (status === 'active') styles = "opacity-100 grayscale-0 layer-box";
-            if (status === 'incubation') styles = "opacity-70 grayscale border-dashed border-slate-400 bg-slate-100 text-slate-500";
-            if (highlight) styles = "opacity-100 grayscale-0 layer-box highlight transform scale-[1.02] shadow-md";
+            if (status === 'incubation') styles = "opacity-70 grayscale border-dashed border-[#94A3B8] bg-[#F1F5F9] text-[#64748B]";
+            if (highlight) styles = "opacity-100 grayscale-0 layer-box highlight";
 
             return (
                 <div className={`
-                    w-full transition-all duration-700 ease-in-out overflow-hidden flex items-center justify-between group rounded-lg
-                    ${isHidden ? 'max-h-0 opacity-0 m-0 p-0 border-0' : 'max-h-24 opacity-100 mb-1 p-3'}
+                    w-full overflow-hidden flex items-center justify-between group rounded-lg
+                    ${isHidden ? 'max-h-0 opacity-0 m-0 p-0 border-0' : 'max-h-24 opacity-100 mb-1.5 p-3'}
                     ${!isHidden ? styles : ''}
-                `}>
+                `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
                     <div className="flex flex-col whitespace-nowrap overflow-hidden text-ellipsis">
-                        <span className={`font-bold text-sm tracking-wide ${status === 'active' || highlight ? 'text-white' : ''}`}>{label}</span>
-                        <span className={`text-xs font-light truncate ${status === 'active' || highlight ? 'text-blue-100' : ''}`}>{sub}</span>
+                        <span className={`font-semibold text-sm tracking-wide ${status === 'active' || highlight ? 'text-white' : ''}`}>{label}</span>
+                        <span className={`text-xs font-normal truncate ${status === 'active' || highlight ? 'text-[#97B1FF]' : ''}`}>{sub}</span>
                     </div>
-                    {Icon && <Icon size={18} className={`shrink-0 ml-2 ${status === 'active' || highlight ? 'text-blue-300' : ''}`} />}
+                    {Icon && <Icon size={16} className={`shrink-0 ml-2 ${highlight ? 'text-[#00D4FF]' : (status === 'active' ? 'text-[#97B1FF]' : '')}`} />}
                 </div>
             );
         };
 
         const VerticalArchitectureLayer = ({ label, status, highlight, icon: Icon }) => {
             const isHidden = status === 'hidden';
-            let styles = "opacity-40 grayscale border-transparent bg-gray-50 text-slate-400";
+            let styles = "opacity-40 grayscale border-transparent bg-[#F8FAFC] text-[#94A3B8]";
             if (status === 'active') styles = "opacity-100 grayscale-0 pillar-box";
-            if (status === 'incubation') styles = "opacity-70 grayscale border-dashed border-slate-400 bg-slate-100 text-slate-500";
-            if (highlight) styles = "opacity-100 grayscale-0 pillar-box highlight shadow-md";
-            
+            if (status === 'incubation') styles = "opacity-70 grayscale border-dashed border-[#94A3B8] bg-[#F1F5F9] text-[#64748B]";
+            if (highlight) styles = "opacity-100 grayscale-0 pillar-box highlight";
+
             return (
                 <div className={`
-                    h-full border-t-4 transition-all duration-1000 ease-in-out flex flex-col items-center justify-center gap-4 group rounded-lg overflow-hidden
+                    h-full border-t-[3px] flex flex-col items-center justify-center gap-4 group rounded-lg overflow-hidden
                     ${isHidden ? 'w-0 p-0 border-transparent opacity-0' : 'w-10 p-2 opacity-100'}
                     ${!isHidden ? styles : ''}
-                `}>
-                    <div className={`flex flex-col items-center justify-center gap-4 transition-opacity duration-500 ${isHidden ? 'opacity-0' : 'opacity-100'}`}>
-                         {Icon && <Icon size={18} className={`-rotate-90 ${status === 'active' || highlight ? 'text-blue-300' : ''}`} />}
-                        <span className={`font-bold text-xs tracking-wide whitespace-nowrap ${status === 'active' || highlight ? 'text-white' : ''}`} style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+                `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                    <div className={`flex flex-col items-center justify-center gap-4 ${isHidden ? 'opacity-0' : 'opacity-100'}`} style={{ transition: 'opacity 0.4s ease' }}>
+                         {Icon && <Icon size={16} className={`-rotate-90 ${highlight ? 'text-[#00D4FF]' : (status === 'active' ? 'text-[#97B1FF]' : '')}`} />}
+                        <span className={`font-semibold text-xs tracking-wide whitespace-nowrap ${status === 'active' || highlight ? 'text-white' : ''}`} style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
                             {label}
                         </span>
                     </div>
@@ -382,25 +446,24 @@
 
         const ChannelBadge = ({ label, active, icon: Icon }) => (
             <div className={`
-                flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide transition-all duration-500
-                ${active 
-                    ? 'bg-[#071D37] border-blue-500 text-white shadow-sm' 
-                    : 'bg-slate-100 border-slate-200 text-slate-400 grayscale opacity-70'}
-            `}>
-                <Icon size={14} />
+                flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium tracking-wide transition-all duration-500
+                ${active
+                    ? 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
+                    : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#94A3B8] grayscale opacity-60'}
+            `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                <Icon size={14} className={active ? 'text-[#00D4FF]' : ''} />
                 <span>{label}</span>
             </div>
         );
 
         const FrontlineBadge = ({ label, active, isAssisted }) => (
             <div className={`
-                text-[10px] uppercase font-bold tracking-wider px-2 py-1.5 rounded-md border flex-1 text-center flex flex-col items-center justify-center gap-1 min-h-[50px]
-                ${active 
-                    ? 'bg-[#071D37] border-blue-500 text-white shadow-sm'
-                    : 'bg-slate-100 border-slate-200 text-slate-400'}
-                transition-all duration-500
-            `}>
-                {isAssisted ? <Headset size={12} className="text-purple-300" /> : (label.includes('Wealth') ? <Briefcase size={12} className="text-blue-300" /> : <Users size={12} className="text-blue-300" />)}
+                text-[10px] uppercase font-semibold tracking-wider px-2 py-2 rounded-lg border flex-1 text-center flex flex-col items-center justify-center gap-1.5 min-h-[54px]
+                ${active
+                    ? 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
+                    : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#94A3B8]'}
+            `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                {isAssisted ? <Headset size={12} className={active ? "text-[#00D4FF]" : ""} /> : (label.includes('Wealth') ? <Briefcase size={12} className={active ? "text-[#97B1FF]" : ""} /> : <Users size={12} className={active ? "text-[#97B1FF]" : ""} />)}
                 <span>{label}</span>
             </div>
         );
@@ -414,35 +477,35 @@
             }, [data, onVisible]);
 
             return (
-                <div ref={itemRef} className={`relative pl-12 pb-24 group ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-80'} transition-opacity duration-500`}>
-                    <div className={`absolute left-[17px] top-0 w-4 h-4 rounded-full border-2 ${isActive ? 'bg-blue-500 border-blue-400 shadow-[0_0_15px_rgba(37,99,235,0.4)] ring-4 ring-blue-100' : 'bg-slate-200 border-slate-300'} transition-all duration-300 z-10`}></div>
+                <div ref={itemRef} className={`relative pl-12 pb-24 group ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`} style={{ transition: 'opacity 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                    <div className={`absolute left-[17px] top-0 w-4 h-4 rounded-full border-2 ${isActive ? 'bg-[#0066FF] border-[#0066FF] shadow-[0_0_12px_rgba(0,102,255,0.4)] ring-4 ring-[#0066FF]/10' : 'bg-[#E2E8F0] border-[#CBD5E1]'} z-10`} style={{ transition: 'all 0.4s cubic-bezier(0.625, 0.05, 0, 1)' }}></div>
                     <div className="flex items-center gap-3 mb-3">
-                        <span className={`text-3xl font-bold ${isActive ? 'text-gradient-blue' : 'text-slate-400'}`}>{data.year}</span>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 border border-slate-200 px-2 py-1 rounded-full">{data.era}</span>
+                        <span className={`text-3xl font-bold ${isActive ? 'text-gradient-blue' : 'text-[#94A3B8]'}`}>{data.year}</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-1 rounded-full">{data.era}</span>
                     </div>
-                    <h3 className="text-2xl font-semibold text-slate-800 mb-6">{data.title}</h3>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div className="glass-panel p-5 rounded-lg border-l-2 border-slate-300">
-                            <div className="flex items-center gap-2 mb-2 text-slate-500 text-sm font-semibold uppercase tracking-wider">
-                                <Users size={14} /> The Market Asked
+                    <h3 className="text-2xl font-semibold text-[#0F172A] mb-6">{data.title}</h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div className="glass-panel p-4 rounded-xl border-l-[3px] border-[#E2E8F0]">
+                            <div className="flex items-center gap-2 mb-2 text-[#64748B] text-[10px] font-semibold uppercase tracking-wider">
+                                <Users size={12} /> The Market Asked
                             </div>
-                            <p className="text-slate-700 italic">"{data.marketAsk}"</p>
+                            <p className="text-[#475569] italic text-sm leading-relaxed">"{data.marketAsk}"</p>
                         </div>
-                        <div className="glass-panel p-5 rounded-lg border-l-2 border-emerald-400 bg-emerald-50/50">
-                            <div className="flex items-center gap-2 mb-2 text-emerald-600 text-sm font-semibold uppercase tracking-wider">
-                                <Target size={14} /> Strategic Impact
+                        <div className="glass-panel p-4 rounded-xl border-l-[3px] border-[#10B981] bg-[#F0FDF4]">
+                            <div className="flex items-center gap-2 mb-2 text-[#059669] text-[10px] font-semibold uppercase tracking-wider">
+                                <Target size={12} /> Strategic Impact
                             </div>
-                            <p className="text-slate-700 font-medium">{data.strategicImpact}</p>
+                            <p className="text-[#374151] font-medium text-sm leading-relaxed">{data.strategicImpact}</p>
                         </div>
                     </div>
 
-                    <div className={`glass-panel p-5 rounded-lg border-l-2 ${isActive ? 'border-blue-500 bg-blue-50/30' : 'border-slate-300'} transition-colors duration-500`}>
-                        <div className={`flex items-center gap-2 mb-2 text-sm font-semibold uppercase tracking-wider ${isActive ? 'text-blue-600' : 'text-slate-500'}`}>
-                            <Zap size={14} /> Backbase Responded
+                    <div className={`glass-panel p-4 rounded-xl border-l-[3px] ${isActive ? 'border-[#0066FF] bg-[#EFF6FF]' : 'border-[#E2E8F0]'}`} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                        <div className={`flex items-center gap-2 mb-2 text-[10px] font-semibold uppercase tracking-wider ${isActive ? 'text-[#0066FF]' : 'text-[#64748B]'}`}>
+                            <Zap size={12} /> Backbase Responded
                         </div>
-                        <p className="text-slate-800 text-lg font-medium mb-2">{data.response}</p>
-                        <p className="text-slate-600 text-sm leading-relaxed">{data.description}</p>
+                        <p className="text-[#0F172A] text-base font-semibold mb-1.5">{data.response}</p>
+                        <p className="text-[#64748B] text-sm leading-relaxed">{data.description}</p>
                     </div>
                 </div>
             );
@@ -481,22 +544,39 @@
 
             return (
                 <div className="min-h-screen">
-                    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16 flex items-center justify-between px-6 lg:px-12 shadow-sm">
-                        <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded bg-gradient-to-br from-[#041E42] to-[#00A8E8] flex items-center justify-center text-white font-bold text-xl">B</div>
-                            <span className="font-semibold text-lg tracking-tight text-slate-800">Backbase <span className="text-slate-400">Evolution</span></span>
+                    <header className="bb-header fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-6 lg:px-12">
+                        <div className="flex items-center gap-4">
+                            <svg width="120" height="22" viewBox="0 0 120 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clipPath="url(#clip0_bb_logo)">
+                                    <path d="M2.92158 7.12876H5.84316V4.25433V1.41016H2.92158H0V4.25433H2.92158V7.12876Z" fill="#041E42"/>
+                                    <path d="M11.9941 10.7596V10.3058C14.8542 9.91243 15.5923 8.06674 15.5923 6.22105C15.5923 3.95176 14.0239 1.50093 10.1182 1.41016H7.78092V4.28459H10.1182C12.1787 4.31485 12.6092 5.61591 12.5785 6.67491C12.517 9.00471 11.4406 9.06523 9.62613 9.09548H2.92188V20.5932H9.90291C14.6082 20.5932 16.1766 17.9608 16.1766 15.2377C16.1766 12.8776 15.3463 11.1832 11.9941 10.7596ZM9.99517 17.6885H5.87421V11.8791H9.96442C12.4247 11.8791 13.2243 12.333 13.2243 14.8141C13.255 16.9018 12.4554 17.6583 9.99517 17.6885Z" fill="#041E42"/>
+                                    <path d="M18.4512 15.9031C18.4512 13.4523 20.0811 10.9712 23.587 10.9712C25.586 10.9712 26.7239 11.5461 27.5542 12.6656V9.00449H20.1119V6.46289H30.4143V17.7186H32.1365V20.5325H27.5542V19.1104C26.6931 20.2299 25.586 20.8048 23.587 20.8048C20.0811 20.8351 18.4512 18.354 18.4512 15.9031ZM27.5542 15.9031C27.5542 14.481 26.5393 13.5128 24.4173 13.5128C22.2954 13.5128 21.2805 14.5113 21.2805 15.9031C21.2805 17.295 22.2954 18.2935 24.4173 18.2935C26.5393 18.2935 27.5542 17.3252 27.5542 15.9031Z" fill="#041E42"/>
+                                    <path d="M33.4277 13.5136C33.4277 9.0961 35.642 6.19141 39.8552 6.19141C43.6071 6.19141 45.8214 8.46069 45.8214 11.8192H42.9613C42.8383 10.0643 42.254 8.73301 40.009 8.73301C37.3334 8.73301 36.3186 9.85253 36.3186 13.5136C36.3186 17.1748 37.3334 18.2943 40.009 18.2943C42.254 18.2943 42.8383 16.9327 42.9613 15.208H45.8214C45.8214 18.5666 43.6071 20.8359 39.8552 20.8359C35.642 20.8359 33.4277 17.9312 33.4277 13.5136Z" fill="#041E42"/>
+                                    <path d="M51.3894 14.8148V20.5636H48.5293V0.835938H51.3894V12.2732H53.6344L57.6323 6.46377H61.1075L56.1869 13.544L61.0767 20.5636H57.6016L53.6036 14.8148H51.3894Z" fill="#041E42"/>
+                                    <path d="M76.637 13.5137C76.637 17.6589 75.0071 20.8359 70.3633 20.8359C68.3643 20.8359 66.9497 20.0795 66.0886 18.8692V20.5636H63.2285V0.835938H66.0886V8.15818C66.9497 6.94789 68.3643 6.19146 70.3633 6.19146C75.0071 6.19146 76.637 9.36846 76.637 13.5137ZM73.7769 13.5137C73.7769 10.1249 72.7313 8.73306 69.9328 8.73306C67.1342 8.73306 66.0886 10.1249 66.0886 13.5137C66.0886 16.9025 67.1342 18.2943 69.9328 18.2943C72.7313 18.2943 73.7769 16.9025 73.7769 13.5137Z" fill="#041E42"/>
+                                    <path d="M78.4824 15.9031C78.4824 13.4523 80.1124 10.9712 83.6182 10.9712C85.6172 10.9712 86.7243 11.5461 87.5854 12.6656V9.00449H80.1431V6.46289H90.4455V17.7186H92.1677V20.5325H87.5854V19.1104C86.7243 20.2299 85.6172 20.8048 83.6182 20.8048C80.1124 20.8351 78.4824 18.354 78.4824 15.9031ZM87.5854 15.9031C87.5854 14.481 86.5398 13.5128 84.4794 13.5128C82.4189 13.5128 81.3732 14.5113 81.3732 15.9031C81.3732 17.295 82.4189 18.2935 84.4794 18.2935C86.5398 18.2935 87.5854 17.3252 87.5854 15.9031Z" fill="#041E42"/>
+                                    <path d="M94.3203 19.0205V16.1763C96.9344 17.7799 98.2875 18.2943 100.379 18.2943C102.224 18.2943 102.901 17.5076 102.901 16.6301C102.901 15.6316 102.162 15.1173 99.5176 14.5424C95.4274 13.6649 94.3203 12.3336 94.3203 10.1248C94.3203 7.79504 96.35 6.19141 99.4254 6.19141C101.332 6.19141 103.239 6.70578 104.623 7.64375V10.1854C102.531 9.15661 100.686 8.73301 99.1178 8.73301C97.6417 8.73301 97.1804 9.33815 97.1804 10.0643C97.1804 10.851 97.5494 11.3956 99.9789 12.031C104.223 13.1506 105.761 14.028 105.761 16.6301C105.761 19.0205 103.731 20.8661 100.379 20.8661C98.1645 20.8359 96.4115 20.4123 94.3203 19.0205Z" fill="#041E42"/>
+                                    <path d="M107.637 13.5136C107.637 9.0961 109.42 6.19141 113.818 6.19141C118.216 6.19141 120 8.82378 120 13.2413V14.7844H110.558C110.743 16.7512 111.573 18.2943 114.895 18.2943C116.032 18.2943 117.17 18.2943 119.016 17.7799V20.261C116.77 20.8359 115.971 20.8359 114.895 20.8359C108.436 20.8359 107.637 16.2973 107.637 13.5136ZM117.14 12.2428C117.078 9.79201 116.125 8.73301 113.818 8.73301C111.512 8.73301 110.651 9.97355 110.497 12.2428H117.14Z" fill="#041E42"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_bb_logo">
+                                        <rect width="120" height="20.328" fill="white" transform="translate(0 0.835938)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span className="text-[#64748B] font-normal text-sm border-l border-[#E2E8F0] pl-4">Evolution</span>
                         </div>
-                        <button 
+                        <button
                             onClick={() => setIsPlaying(!isPlaying)}
                             className={`
-                                flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition-all
-                                ${isPlaying 
-                                    ? 'bg-red-50 text-red-600 border border-red-200 hover:bg-red-100' 
-                                    : 'bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 shadow-sm'}
+                                bb-button border
+                                ${isPlaying
+                                    ? 'bg-white text-red-600 border-red-200 hover:bg-red-50'
+                                    : 'bg-[#041E42] text-white border-[#041E42] hover:bg-[#0A2D5C]'}
                             `}
                         >
-                            {isPlaying ? <Pause size={16}/> : <Play size={16}/>}
-                            {isPlaying ? "Pause Story" : "Play Story"}
+                            {isPlaying ? <Pause size={14}/> : <Play size={14}/>}
+                            {isPlaying ? "Pause" : "Play Story"}
                         </button>
                     </header>
 
@@ -507,13 +587,13 @@
                                 <div className="connector-line-active" style={{ height: `${scrolledPercent * 100}%` }}></div>
                                 <div className="space-y-8">
                                     <div className="pl-12 mb-16">
-                                        <h1 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">Orchestrating <br/> Banking's Future</h1>
-                                        <p className="text-lg text-slate-500 leading-relaxed max-w-md">See how Backbase evolved from a portal widget library into the AI-Native Banking Platform.</p>
+                                        <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-[#041E42] leading-tight">Orchestrating <br/><span className="text-gradient-blue">Banking's Future</span></h1>
+                                        <p className="text-base text-[#64748B] leading-relaxed max-w-md">See how Backbase evolved from a portal widget library into the AI-Native Banking Platform.</p>
                                     </div>
                                     {timelineData.map((item) => (
                                         <TimelineItem key={item.year} data={item} isActive={activeData.year === item.year} onVisible={setActiveData} />
                                     ))}
-                                    <div className="pl-12 pt-12 pb-32 opacity-50 text-sm text-slate-400">
+                                    <div className="pl-12 pt-12 pb-32 opacity-60 text-sm text-[#64748B]">
                                         End of current timeline. The future is being built now.
                                     </div>
                                 </div>
@@ -523,17 +603,17 @@
                                 <div className="sticky top-32 h-[calc(100vh-160px)] flex flex-col">
                                     <div className="mb-6 flex items-center justify-between">
                                         <div>
-                                            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2"><Layers size={20} className="text-blue-500"/> Platform Architecture</h2>
-                                            <p className="text-sm text-slate-500 mt-1">Consistent Layer Evolution</p>
+                                            <h2 className="text-lg font-semibold text-[#0F172A] flex items-center gap-2"><Layers size={18} className="text-[#0066FF]"/> Platform Architecture</h2>
+                                            <p className="text-sm text-[#64748B] mt-0.5">Consistent Layer Evolution</p>
                                         </div>
-                                        <div className="text-4xl font-bold text-slate-200 tabular-nums">{activeData.year}</div>
+                                        <div className="text-4xl font-bold text-[#E2E8F0] tabular-nums">{activeData.year}</div>
                                     </div>
 
-                                    <div className="flex-1 flex flex-col justify-end gap-1 relative bg-white rounded-2xl p-6 border border-slate-200 shadow-lg overflow-hidden h-full">
-                                        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:20px_20px] rounded-2xl pointer-events-none"></div>
+                                    <div className="flex-1 flex flex-col justify-end gap-1 relative bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-[0_4px_24px_rgba(0,0,0,0.04)] overflow-hidden h-full">
+                                        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.015)_1px,transparent_1px)] bg-[size:24px_24px] rounded-2xl pointer-events-none"></div>
 
                                         <div className="mb-4 shrink-0 z-10">
-                                            <div className="text-xs uppercase font-bold text-slate-400 mb-2 pl-1 flex items-center gap-2">
+                                            <div className="text-[10px] uppercase font-semibold text-[#94A3B8] mb-2 pl-1 flex items-center gap-2 tracking-wider">
                                                 Touchpoints
                                             </div>
                                             <div className="flex gap-2">
@@ -544,8 +624,8 @@
                                             </div>
                                         </div>
 
-                                        <div className="mb-2 shrink-0 z-10">
-                                            <div className="text-xs uppercase font-bold text-slate-400 mb-2 pl-1 flex items-center gap-2">
+                                        <div className="mb-3 shrink-0 z-10">
+                                            <div className="text-[10px] uppercase font-semibold text-[#94A3B8] mb-2 pl-1 flex items-center gap-2 tracking-wider">
                                                 Unified Frontline (Apps)
                                             </div>
                                             <div className="flex gap-2">
