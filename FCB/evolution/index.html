@@ -231,7 +231,8 @@
                     entitlements: { status: 'hidden', sub: "Entitlements Services" },
                     security: { status: 'hidden', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'hidden', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'hidden', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'hidden', sub: "Agentic SDLC" }
                 }
             },
             {
@@ -254,7 +255,8 @@
                     entitlements: { status: 'hidden', sub: "Entitlements Services" },
                     security: { status: 'hidden', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'hidden', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'hidden', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'hidden', sub: "Agentic SDLC" }
                 }
             },
             {
@@ -277,7 +279,8 @@
                     entitlements: { status: 'active', sub: "Entitlements Services" },
                     security: { status: 'active', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'hidden', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'hidden', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'hidden', sub: "Agentic SDLC" }
                 }
             },
             {
@@ -300,7 +303,8 @@
                     entitlements: { status: 'active', sub: "Entitlements Services" },
                     security: { status: 'active', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'hidden', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'hidden', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'hidden', sub: "Agentic SDLC" }
                 }
             },
             {
@@ -323,7 +327,8 @@
                     entitlements: { status: 'active', sub: "Entitlements Services" },
                     security: { status: 'active', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration", highlight: true },
-                    infra: { status: 'active', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'active', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'hidden', sub: "Agentic SDLC" }
                 }
             },
             {
@@ -346,7 +351,8 @@
                     entitlements: { status: 'active', sub: "Entitlements Services" },
                     security: { status: 'active', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'active', sub: "BaaS & Agentic SDLC", highlight: true }
+                    cloudInfra: { status: 'active', sub: "Cloud Infrastructure", highlight: true },
+                    agenticSdlc: { status: 'active', sub: "Agentic SDLC" }
                 }
             },
             {
@@ -369,7 +375,32 @@
                     entitlements: { status: 'active', sub: "Entitlements Services" },
                     security: { status: 'active', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'active', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'active', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'active', sub: "Agentic SDLC" }
+                }
+            },
+            {
+                year: 2025,
+                era: "AI-Native Era",
+                title: "Agentic SDLC",
+                marketAsk: "Our developers spend too much time on repetitive tasks. We need AI to accelerate delivery.",
+                strategicImpact: "AI-Powered Development. Embedding agentic AI into the software delivery lifecycle to automate coding, testing, and deployment.",
+                response: "Agentic SDLC Platform",
+                description: "AI meets DevOps. We extended agentic capabilities into the development lifecycle itself—AI copilots for developers, automated code generation, intelligent testing, and self-healing deployments.",
+                stats: ["AI Copilots", "Intelligent CI/CD"],
+                channels: { web: true, mobile: true, branch: true, callCenter: true },
+                frontline: { retail: true, sme: true, wealth: true, assisted: true },
+                arch: {
+                    presentation: { status: 'active', sub: "Unified Frontline (AI Co-Pilots)" },
+                    banking: { status: 'active', sub: "Composable Banking Services" },
+                    automation: { status: 'active', sub: "Process Automation Services" },
+                    agentic: { status: 'active', sub: "Agentic AI Agents" },
+                    semantic: { status: 'hidden', sub: "NEXUS Semantic Data Mesh" },
+                    entitlements: { status: 'active', sub: "Entitlements Services" },
+                    security: { status: 'active', sub: "Security Services" },
+                    integration: { status: 'active', sub: "Universal Integration" },
+                    cloudInfra: { status: 'active', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'active', sub: "Agentic SDLC", highlight: true }
                 }
             },
             {
@@ -392,7 +423,8 @@
                     entitlements: { status: 'active', sub: "Entitlements Services" },
                     security: { status: 'active', sub: "Security Services" },
                     integration: { status: 'active', sub: "Universal Integration" },
-                    infra: { status: 'active', sub: "BaaS & Agentic SDLC" }
+                    cloudInfra: { status: 'active', sub: "Cloud Infrastructure" },
+                    agenticSdlc: { status: 'active', sub: "Agentic SDLC" }
                 }
             }
         ];
@@ -652,8 +684,13 @@
                                             </div>
                                         </div>
 
-                                        <div className="z-10 w-full">
-                                            <ArchitectureLayer {...activeData.arch.infra} label="Infrastructure" icon={Cloud} />
+                                        <div className="z-10 w-full flex gap-1.5">
+                                            <div className="flex-1">
+                                                <ArchitectureLayer {...activeData.arch.cloudInfra} label="Cloud Infrastructure" icon={Cloud} />
+                                            </div>
+                                            <div className="flex-1">
+                                                <ArchitectureLayer {...activeData.arch.agenticSdlc} label="Agentic SDLC" icon={Sparkles} />
+                                            </div>
                                         </div>
 
                                     </div>
