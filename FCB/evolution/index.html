@@ -440,12 +440,14 @@
 
         // --- Components ---
 
-        const ArchitectureLayer = ({ label, sub, status, highlight, icon: Icon }) => {
+        const ArchitectureLayer = ({ label, sub, status, highlight, icon: Icon, isNew }) => {
             const isHidden = status === 'hidden';
             let styles = "opacity-40 grayscale border-transparent bg-[#F8FAFC] text-[#94A3B8]";
             if (status === 'active') styles = "opacity-100 grayscale-0 layer-box";
             if (status === 'incubation') styles = "opacity-70 grayscale border-dashed border-[#94A3B8] bg-[#F1F5F9] text-[#64748B]";
             if (highlight) styles = "opacity-100 grayscale-0 layer-box highlight";
+            // New layers get teal background with cyan glow - more prominent
+            if (isNew && status === 'active') styles = "opacity-100 grayscale-0 bg-[#0A4D5C] border border-[#00D4FF]/50 text-white shadow-[0_0_16px_rgba(0,212,255,0.35)]";
 
             return (
                 <div className={`
@@ -454,30 +456,33 @@
                     ${!isHidden ? styles : ''}
                 `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
                     <div className="flex flex-col whitespace-nowrap overflow-hidden text-ellipsis">
-                        <span className={`font-semibold text-sm tracking-wide ${status === 'active' || highlight ? 'text-white' : ''}`}>{label}</span>
-                        <span className={`text-xs font-normal truncate ${status === 'active' || highlight ? 'text-[#97B1FF]' : ''}`}>{sub}</span>
+                        <span className={`font-semibold text-sm tracking-wide ${status === 'active' || highlight || isNew ? 'text-white' : ''}`}>{label}</span>
+                        <span className={`text-xs font-normal truncate ${isNew ? 'text-[#00D4FF]' : (status === 'active' || highlight ? 'text-[#97B1FF]' : '')}`}>{sub}</span>
                     </div>
-                    {Icon && <Icon size={16} className={`shrink-0 ml-2 ${highlight ? 'text-[#00D4FF]' : (status === 'active' ? 'text-[#97B1FF]' : '')}`} />}
+                    {Icon && <Icon size={16} className={`shrink-0 ml-2 ${highlight || isNew ? 'text-[#00D4FF]' : (status === 'active' ? 'text-[#97B1FF]' : '')}`} />}
                 </div>
             );
         };
 
-        const VerticalArchitectureLayer = ({ label, status, highlight, icon: Icon }) => {
+        const VerticalArchitectureLayer = ({ label, status, highlight, icon: Icon, isNew }) => {
             const isHidden = status === 'hidden';
             let styles = "opacity-40 grayscale border-transparent bg-[#F8FAFC] text-[#94A3B8]";
             if (status === 'active') styles = "opacity-100 grayscale-0 pillar-box";
             if (status === 'incubation') styles = "opacity-70 grayscale border-dashed border-[#94A3B8] bg-[#F1F5F9] text-[#64748B]";
             if (highlight) styles = "opacity-100 grayscale-0 pillar-box highlight";
+            // New layers get teal background with cyan glow
+            if (isNew && status === 'active') styles = "opacity-100 grayscale-0 bg-[#0A4D5C] border border-[#00D4FF]/50 text-white shadow-[0_0_16px_rgba(0,212,255,0.35)]";
 
             return (
                 <div className={`
                     h-full border-t-[3px] flex flex-col items-center justify-center gap-4 group rounded-lg overflow-hidden
                     ${isHidden ? 'w-0 p-0 border-transparent opacity-0' : 'w-10 p-2 opacity-100'}
                     ${!isHidden ? styles : ''}
+                    ${isNew && status === 'active' ? 'border-t-[#00D4FF]' : ''}
                 `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
                     <div className={`flex flex-col items-center justify-center gap-4 ${isHidden ? 'opacity-0' : 'opacity-100'}`} style={{ transition: 'opacity 0.4s ease' }}>
-                         {Icon && <Icon size={16} className={`-rotate-90 ${highlight ? 'text-[#00D4FF]' : (status === 'active' ? 'text-[#97B1FF]' : '')}`} />}
-                        <span className={`font-semibold text-xs tracking-wide whitespace-nowrap ${status === 'active' || highlight ? 'text-white' : ''}`} style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+                         {Icon && <Icon size={16} className={`-rotate-90 ${highlight || isNew ? 'text-[#00D4FF]' : (status === 'active' ? 'text-[#97B1FF]' : '')}`} />}
+                        <span className={`font-semibold text-xs tracking-wide whitespace-nowrap ${status === 'active' || highlight || isNew ? 'text-white' : ''}`} style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
                             {label}
                         </span>
                     </div>
@@ -485,26 +490,30 @@
             );
         };
 
-        const ChannelBadge = ({ label, active, icon: Icon }) => (
+        const ChannelBadge = ({ label, active, icon: Icon, isNew }) => (
             <div className={`
                 flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium tracking-wide transition-all duration-500
                 ${active
-                    ? 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
+                    ? isNew
+                        ? 'bg-[#0A4D5C] border-[#00D4FF]/50 text-white shadow-[0_0_12px_rgba(0,212,255,0.3)]'
+                        : 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
                     : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#94A3B8] grayscale opacity-60'}
             `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
-                <Icon size={14} className={active ? 'text-[#00D4FF]' : ''} />
+                <Icon size={14} className={active ? (isNew ? 'text-[#00D4FF]' : 'text-[#00D4FF]') : ''} />
                 <span>{label}</span>
             </div>
         );
 
-        const FrontlineBadge = ({ label, active, icon: Icon, isAssisted }) => (
+        const FrontlineBadge = ({ label, active, icon: Icon, isAssisted, isNew }) => (
             <div className={`
                 text-[10px] uppercase font-semibold tracking-wider px-2 py-2 rounded-lg border flex-1 text-center flex flex-col items-center justify-center gap-1.5 min-h-[54px]
                 ${active
-                    ? 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
+                    ? isNew
+                        ? 'bg-[#0A4D5C] border-[#00D4FF]/50 text-white shadow-[0_0_12px_rgba(0,212,255,0.3)]'
+                        : 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
                     : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#94A3B8]'}
             `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
-                {Icon && <Icon size={12} className={active ? (isAssisted ? "text-[#00D4FF]" : "text-[#97B1FF]") : ""} />}
+                {Icon && <Icon size={12} className={active ? (isNew || isAssisted ? "text-[#00D4FF]" : "text-[#97B1FF]") : ""} />}
                 <span>{label}</span>
             </div>
         );
@@ -552,10 +561,31 @@
             );
         };
 
+        // Helper to find previous year's data
+        const getPreviousYearData = (currentYear) => {
+            const currentIndex = timelineData.findIndex(d => d.year === currentYear);
+            return currentIndex > 0 ? timelineData[currentIndex - 1] : null;
+        };
+
         const App = () => {
             const [activeData, setActiveData] = useState(timelineData[0]);
             const [scrolledPercent, setScrolledPercent] = useState(0);
             const [isPlaying, setIsPlaying] = useState(false);
+
+            // Compute what's new compared to previous year
+            const prevData = getPreviousYearData(activeData.year);
+            const isNewChannel = (key) => {
+                if (!prevData) return activeData.channels[key]; // First year - everything active is "new"
+                return activeData.channels[key] && !prevData.channels[key];
+            };
+            const isNewFrontline = (key) => {
+                if (!prevData) return activeData.frontline[key];
+                return activeData.frontline[key] && !prevData.frontline[key];
+            };
+            const isNewArch = (key) => {
+                if (!prevData) return activeData.arch[key].status === 'active';
+                return activeData.arch[key].status === 'active' && prevData.arch[key].status !== 'active';
+            };
 
             useEffect(() => {
                 const handleScroll = () => {
@@ -660,8 +690,8 @@
                                                         Self-Service
                                                     </div>
                                                     <div className="flex gap-1.5 h-[52px]">
-                                                        <ChannelBadge label="Web" active={activeData.channels.web} icon={Globe} />
-                                                        <ChannelBadge label="Mobile" active={activeData.channels.mobile} icon={Smartphone} />
+                                                        <ChannelBadge label="Web" active={activeData.channels.web} icon={Globe} isNew={isNewChannel('web')} />
+                                                        <ChannelBadge label="Mobile" active={activeData.channels.mobile} icon={Smartphone} isNew={isNewChannel('mobile')} />
                                                     </div>
                                                 </div>
                                                 <div className="w-2/3">
@@ -669,10 +699,10 @@
                                                         Assisted Channels
                                                     </div>
                                                     <div className="flex gap-1.5 h-[52px]">
-                                                        <ChannelBadge label="Branch" active={activeData.channels.branch} icon={Building} />
-                                                        <ChannelBadge label="Call Center" active={activeData.channels.callCenter} icon={Phone} />
-                                                        <ChannelBadge label="Relationship Manager" active={activeData.frontline.rm} icon={Target} />
-                                                        <ChannelBadge label="Back Office" active={activeData.frontline.backOffice} icon={Database} />
+                                                        <ChannelBadge label="Branch" active={activeData.channels.branch} icon={Building} isNew={isNewChannel('branch')} />
+                                                        <ChannelBadge label="Call Center" active={activeData.channels.callCenter} icon={Phone} isNew={isNewChannel('callCenter')} />
+                                                        <ChannelBadge label="Relationship Manager" active={activeData.frontline.rm} icon={Target} isNew={isNewFrontline('rm')} />
+                                                        <ChannelBadge label="Back Office" active={activeData.frontline.backOffice} icon={Database} isNew={isNewFrontline('backOffice')} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -683,36 +713,36 @@
                                                 Lines of Business
                                             </div>
                                             <div className="flex gap-2 w-full">
-                                                <div className="flex-1"><ChannelBadge label="Retail" active={activeData.frontline.retail} icon={Users} /></div>
-                                                <div className="flex-1"><ChannelBadge label="SME" active={activeData.frontline.sme} icon={Building} /></div>
-                                                <div className="flex-1"><ChannelBadge label="Commercial" active={activeData.frontline.commercial} icon={Building} /></div>
-                                                <div className="flex-1"><ChannelBadge label="Wealth" active={activeData.frontline.wealth} icon={Briefcase} /></div>
+                                                <div className="flex-1"><ChannelBadge label="Retail" active={activeData.frontline.retail} icon={Users} isNew={isNewFrontline('retail')} /></div>
+                                                <div className="flex-1"><ChannelBadge label="SME" active={activeData.frontline.sme} icon={Building} isNew={isNewFrontline('sme')} /></div>
+                                                <div className="flex-1"><ChannelBadge label="Commercial" active={activeData.frontline.commercial} icon={Building} isNew={isNewFrontline('commercial')} /></div>
+                                                <div className="flex-1"><ChannelBadge label="Wealth" active={activeData.frontline.wealth} icon={Briefcase} isNew={isNewFrontline('wealth')} /></div>
                                             </div>
                                         </div>
 
                                         <div className="flex gap-1 z-10 items-stretch">
                                             <div className="flex-1 flex flex-col justify-start">
-                                                <ArchitectureLayer {...activeData.arch.presentation} label="Presentation Services" icon={Layout} />
-                                                <ArchitectureLayer {...activeData.arch.banking} label="Banking Services" icon={Database} />
-                                                <ArchitectureLayer {...activeData.arch.automation} label="Process Automation Services" icon={Code} />
-                                                <ArchitectureLayer {...activeData.arch.agentic} label="Agentic Services" icon={Bot} />
-                                                <ArchitectureLayer {...activeData.arch.semantic} label="Semantic Services" icon={Brain} />
+                                                <ArchitectureLayer {...activeData.arch.presentation} label="Presentation Services" icon={Layout} isNew={isNewArch('presentation')} />
+                                                <ArchitectureLayer {...activeData.arch.banking} label="Banking Services" icon={Database} isNew={isNewArch('banking')} />
+                                                <ArchitectureLayer {...activeData.arch.automation} label="Process Automation Services" icon={Code} isNew={isNewArch('automation')} />
+                                                <ArchitectureLayer {...activeData.arch.agentic} label="Agentic Services" icon={Bot} isNew={isNewArch('agentic')} />
+                                                <ArchitectureLayer {...activeData.arch.semantic} label="Semantic Services" icon={Brain} isNew={isNewArch('semantic')} />
                                                 <div className="w-full flex gap-1.5">
                                                     <div className="flex-1" style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
-                                                        <ArchitectureLayer {...activeData.arch.integration} label="Integration Services" icon={Server} />
+                                                        <ArchitectureLayer {...activeData.arch.integration} label="Integration Services" icon={Server} isNew={isNewArch('integration')} />
                                                     </div>
                                                     <div
                                                         className={activeData.arch.marketplace.status === 'hidden' ? 'flex-0 w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
                                                         style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
                                                     >
-                                                        <ArchitectureLayer {...activeData.arch.marketplace} label="Marketplace" icon={Layers} />
+                                                        <ArchitectureLayer {...activeData.arch.marketplace} label="Marketplace" icon={Layers} isNew={isNewArch('marketplace')} />
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div className="flex gap-1 shrink-0">
-                                                 <VerticalArchitectureLayer {...activeData.arch.entitlements} label="Entitlements Services" icon={Key} />
-                                                 <VerticalArchitectureLayer {...activeData.arch.security} label="Security Services" icon={Shield} />
+                                                 <VerticalArchitectureLayer {...activeData.arch.entitlements} label="Entitlements Services" icon={Key} isNew={isNewArch('entitlements')} />
+                                                 <VerticalArchitectureLayer {...activeData.arch.security} label="Security Services" icon={Shield} isNew={isNewArch('security')} />
                                             </div>
                                         </div>
 
@@ -721,13 +751,13 @@
                                                 className={activeData.arch.cloudInfra.status === 'hidden' ? 'flex-0 w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
                                                 style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
                                             >
-                                                <ArchitectureLayer {...activeData.arch.cloudInfra} label="Cloud Infrastructure" icon={Cloud} />
+                                                <ArchitectureLayer {...activeData.arch.cloudInfra} label="Cloud Infrastructure" icon={Cloud} isNew={isNewArch('cloudInfra')} />
                                             </div>
                                             <div
                                                 className={activeData.arch.agenticSdlc.status === 'hidden' ? 'flex-0 w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
                                                 style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
                                             >
-                                                <ArchitectureLayer {...activeData.arch.agenticSdlc} label="Agentic SDLC" icon={Sparkles} />
+                                                <ArchitectureLayer {...activeData.arch.agenticSdlc} label="Agentic SDLC" icon={Sparkles} isNew={isNewArch('agenticSdlc')} />
                                             </div>
                                         </div>
 
