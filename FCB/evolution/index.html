@@ -718,42 +718,46 @@
                                             </div>
                                         </div>
 
-                                        <div className="flex gap-1 z-10 items-stretch">
-                                            {/* Left vertical pillar - Agentic SDLC */}
-                                            <div className="flex gap-1 shrink-0">
-                                                 <VerticalArchitectureLayer {...activeData.arch.agenticSdlc} label="Agentic SDLC" icon={Sparkles} isNew={isNewArch('agenticSdlc')} />
-                                            </div>
+                                        <div className="flex flex-col gap-1 z-10">
+                                            {/* Top section: Left pillar + Horizontal layers + Right pillars */}
+                                            <div className="flex gap-1 items-stretch">
+                                                {/* Left vertical pillar - Agentic SDLC */}
+                                                <div className="flex gap-1 shrink-0">
+                                                     <VerticalArchitectureLayer {...activeData.arch.agenticSdlc} label="Agentic SDLC" icon={Sparkles} isNew={isNewArch('agenticSdlc')} />
+                                                </div>
 
-                                            {/* Horizontal layers */}
-                                            <div className="flex-1 flex flex-col justify-start">
-                                                <ArchitectureLayer {...activeData.arch.presentation} label="Presentation Services" icon={Layout} isNew={isNewArch('presentation')} />
-                                                <ArchitectureLayer {...activeData.arch.banking} label="Banking Services" icon={Database} isNew={isNewArch('banking')} />
-                                                <ArchitectureLayer {...activeData.arch.automation} label="Process Automation Services" icon={Code} isNew={isNewArch('automation')} />
-                                                <ArchitectureLayer {...activeData.arch.agentic} label="Agentic Services" icon={Bot} isNew={isNewArch('agentic')} />
-                                                <ArchitectureLayer {...activeData.arch.semantic} label="Semantic Services" icon={Brain} isNew={isNewArch('semantic')} />
-                                                <div className={`w-full flex ${activeData.arch.marketplace.status === 'hidden' ? 'gap-0' : 'gap-1.5'}`} style={{ transition: 'gap 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
-                                                    <div
-                                                        className={activeData.arch.marketplace.status === 'hidden' ? 'w-full' : 'flex-1'}
-                                                        style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
-                                                    >
-                                                        <ArchitectureLayer {...activeData.arch.integration} label="Integration Services" icon={Server} isNew={isNewArch('integration')} />
-                                                    </div>
-                                                    <div
-                                                        className={activeData.arch.marketplace.status === 'hidden' ? 'w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
-                                                        style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
-                                                    >
-                                                        <ArchitectureLayer {...activeData.arch.marketplace} label="Marketplace" icon={Layers} isNew={isNewArch('marketplace')} />
+                                                {/* Horizontal layers */}
+                                                <div className="flex-1 flex flex-col justify-start">
+                                                    <ArchitectureLayer {...activeData.arch.presentation} label="Presentation Services" icon={Layout} isNew={isNewArch('presentation')} />
+                                                    <ArchitectureLayer {...activeData.arch.banking} label="Banking Services" icon={Database} isNew={isNewArch('banking')} />
+                                                    <ArchitectureLayer {...activeData.arch.automation} label="Process Automation Services" icon={Code} isNew={isNewArch('automation')} />
+                                                    <ArchitectureLayer {...activeData.arch.agentic} label="Agentic Services" icon={Bot} isNew={isNewArch('agentic')} />
+                                                    <ArchitectureLayer {...activeData.arch.semantic} label="Semantic Services" icon={Brain} isNew={isNewArch('semantic')} />
+                                                    <div className={`w-full flex ${activeData.arch.marketplace.status === 'hidden' ? 'gap-0' : 'gap-1.5'}`} style={{ transition: 'gap 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                                                        <div
+                                                            className={activeData.arch.marketplace.status === 'hidden' ? 'w-full' : 'flex-1'}
+                                                            style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
+                                                        >
+                                                            <ArchitectureLayer {...activeData.arch.integration} label="Integration Services" icon={Server} isNew={isNewArch('integration')} />
+                                                        </div>
+                                                        <div
+                                                            className={activeData.arch.marketplace.status === 'hidden' ? 'w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
+                                                            style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
+                                                        >
+                                                            <ArchitectureLayer {...activeData.arch.marketplace} label="Marketplace" icon={Layers} isNew={isNewArch('marketplace')} />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                {/* Managed Hosting - always full width */}
-                                                <ArchitectureLayer {...activeData.arch.cloudInfra} label="Managed Hosting" icon={Cloud} isNew={isNewArch('cloudInfra')} />
+
+                                                {/* Right vertical pillars - Entitlements & Security */}
+                                                <div className="flex gap-1 shrink-0">
+                                                     <VerticalArchitectureLayer {...activeData.arch.entitlements} label="Entitlements Services" icon={Key} isNew={isNewArch('entitlements')} />
+                                                     <VerticalArchitectureLayer {...activeData.arch.security} label="Security Services" icon={Shield} isNew={isNewArch('security')} />
+                                                </div>
                                             </div>
 
-                                            {/* Right vertical pillars - Entitlements & Security */}
-                                            <div className="flex gap-1 shrink-0">
-                                                 <VerticalArchitectureLayer {...activeData.arch.entitlements} label="Entitlements Services" icon={Key} isNew={isNewArch('entitlements')} />
-                                                 <VerticalArchitectureLayer {...activeData.arch.security} label="Security Services" icon={Shield} isNew={isNewArch('security')} />
-                                            </div>
+                                            {/* Managed Hosting - spans full width under all pillars */}
+                                            <ArchitectureLayer {...activeData.arch.cloudInfra} label="Managed Hosting" icon={Cloud} isNew={isNewArch('cloudInfra')} />
                                         </div>
 
                                     </div>
