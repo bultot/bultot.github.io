@@ -105,6 +105,20 @@ New items get teal background (`#0A4D5C`) with cyan glow.
 
 Search for `cubic-bezier(0.625, 0.05, 0, 1)` - this is the standard Backbase easing.
 
+### Play Story (Booth Mode)
+
+The "Play Story" button auto-scrolls through the timeline at ~30px/sec - designed for passive viewing at conference booths. To adjust speed, find the `setInterval` in the `isPlaying` useEffect:
+
+```javascript
+intervalId = setInterval(() => {
+    window.scrollBy(0, 1);
+    // ...
+}, 33); // ~30 pixels per second
+```
+
+- Decrease interval (e.g., 20) = faster scroll
+- Increase interval (e.g., 50) = slower scroll
+
 ### Change "new" highlight color
 
 Search for `#0A4D5C` (teal background) and `#00D4FF` (cyan accents).
