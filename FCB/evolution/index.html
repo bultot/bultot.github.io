@@ -598,19 +598,17 @@
             }, []);
 
             useEffect(() => {
-                let animationFrame;
+                let intervalId;
                 if (isPlaying) {
-                    const scrollStep = () => {
-                        window.scrollBy(0, 3);
+                    // Booth mode: slow scroll ~30px/sec for conference displays
+                    intervalId = setInterval(() => {
+                        window.scrollBy(0, 1);
                         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
                             setIsPlaying(false);
-                        } else {
-                            animationFrame = requestAnimationFrame(scrollStep);
                         }
-                    };
-                    animationFrame = requestAnimationFrame(scrollStep);
+                    }, 33); // ~30 pixels per second
                 }
-                return () => cancelAnimationFrame(animationFrame);
+                return () => clearInterval(intervalId);
             }, [isPlaying]);
 
             return (
