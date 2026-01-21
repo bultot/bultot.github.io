@@ -214,14 +214,14 @@
             {
                 year: 2011,
                 era: "Bank 2.0 Portal Era",
-                title: "The Digital Wrapper",
-                marketAsk: "We need to get online fast. Our core systems are too slow to change.",
-                strategicImpact: "Hollow the Core. Allowed banks to innovate on the frontend without waiting for legacy backend modernization.",
+                title: "The Portal Platform",
+                marketAsk: "We need a modern web portal with content management, integration, and security—all behind a login.",
+                strategicImpact: "Horizontal Portal. A flexible platform for building authenticated portals with widget-based content and backend integrations.",
                 response: "Bank 2.0 Portal & Widget App Store",
-                description: "The first major innovation. Instead of replacing the core, we wrapped it. A modular portal that allowed banks to deploy 'widgets' (mini-apps) for PFM, chat, and transactions.",
+                description: "The foundation. A horizontal portal platform—think CMS meets enterprise integration. Banks could create authenticated portals with modular 'widgets' for PFM, chat, and transactions.",
                 stats: ["100 Employees", "Portal Manager"],
                 channels: { web: true, mobile: false, branch: false, callCenter: false },
-                frontline: { retail: false, sme: false, wealth: false, assisted: false },
+                frontline: { retail: false, sme: false, commercial: false, wealth: false, rm: false, frontOffice: false, midOffice: false, backOffice: false },
                 arch: {
                     presentation: { status: 'active', sub: "Widget Framework", highlight: true },
                     banking: { status: 'hidden', sub: "Omni-Banking Services" },
@@ -231,8 +231,9 @@
                     entitlements: { status: 'hidden', sub: "Access Control" },
                     security: { status: 'hidden', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'hidden', sub: "Connector Studio" },
                     cloudInfra: { status: 'hidden', sub: "BaaS" },
-                    agenticSdlc: { status: 'hidden', sub: "Connector Studio" }
+                    agenticSdlc: { status: 'hidden', sub: "AI DevOps" }
                 }
             },
             {
@@ -245,7 +246,7 @@
                 description: "A defining moment. Backbase stopped selling to other industries to focus exclusively on banking. Launched the Commercial Banking Edition to serve businesses.",
                 stats: ["Pivot to Fintech", "Commercial Banking"],
                 channels: { web: true, mobile: true, branch: false, callCenter: false },
-                frontline: { retail: true, sme: false, wealth: false, assisted: false },
+                frontline: { retail: true, sme: false, commercial: false, wealth: false, rm: false, frontOffice: false, midOffice: false, backOffice: false },
                 arch: {
                     presentation: { status: 'active', sub: "Widget Framework", highlight: true },
                     banking: { status: 'hidden', sub: "Omni-Banking Services" },
@@ -255,8 +256,9 @@
                     entitlements: { status: 'hidden', sub: "Access Control" },
                     security: { status: 'hidden', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'hidden', sub: "Connector Studio" },
                     cloudInfra: { status: 'hidden', sub: "BaaS" },
-                    agenticSdlc: { status: 'hidden', sub: "Connector Studio" }
+                    agenticSdlc: { status: 'hidden', sub: "AI DevOps" }
                 }
             },
             {
@@ -269,7 +271,7 @@
                 description: "The birth of 'Omnichannel'. We unified mobile and web onto a single platform. If you started a task on mobile, you could finish it on the web.",
                 stats: ["Mobile SDKs", "Omni-Banking Services"],
                 channels: { web: true, mobile: true, branch: false, callCenter: false },
-                frontline: { retail: true, sme: false, wealth: false, assisted: false },
+                frontline: { retail: true, sme: false, commercial: false, wealth: false, rm: false, frontOffice: false, midOffice: false, backOffice: false },
                 arch: {
                     presentation: { status: 'active', sub: "CXP Widget Engine", highlight: true },
                     banking: { status: 'active', sub: "Omni-Banking Services" },
@@ -279,8 +281,9 @@
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'hidden', sub: "Connector Studio" },
                     cloudInfra: { status: 'hidden', sub: "BaaS" },
-                    agenticSdlc: { status: 'hidden', sub: "Connector Studio" }
+                    agenticSdlc: { status: 'hidden', sub: "AI DevOps" }
                 }
             },
             {
@@ -292,8 +295,8 @@
                 response: "Process Automation Services",
                 description: "We moved deeper into the stack. It wasn't just about showing data anymore; it was about fixing the flow. We introduced capabilities to orchestrate complex user journeys like onboarding.",
                 stats: ["Flow", "Cloud-Native"],
-                channels: { web: true, mobile: true, branch: true, callCenter: true },
-                frontline: { retail: true, sme: false, wealth: true, assisted: true },
+                channels: { web: true, mobile: true, branch: false, callCenter: false },
+                frontline: { retail: true, sme: true, commercial: false, wealth: false, rm: false, frontOffice: false, midOffice: false, backOffice: false },
                 arch: {
                     presentation: { status: 'active', sub: "CXP Widget Engine" },
                     banking: { status: 'active', sub: "Omni-Banking Services" },
@@ -303,8 +306,9 @@
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'hidden', sub: "Connector Studio" },
                     cloudInfra: { status: 'hidden', sub: "BaaS" },
-                    agenticSdlc: { status: 'hidden', sub: "Connector Studio" }
+                    agenticSdlc: { status: 'hidden', sub: "AI DevOps" }
                 }
             },
             {
@@ -316,8 +320,8 @@
                 response: "Engagement Banking Platform (EBP)",
                 description: "Rebranding to EBP. First major funding (€120M). We industrialized the platform with 'Model Banks'—pre-configured versions for Retail, SME, and Wealth.",
                 stats: ["€120M Funding", "Model Banks"],
-                channels: { web: true, mobile: true, branch: true, callCenter: true },
-                frontline: { retail: true, sme: true, wealth: true, assisted: true },
+                channels: { web: true, mobile: true, branch: false, callCenter: false },
+                frontline: { retail: true, sme: true, commercial: false, wealth: true, rm: true, frontOffice: false, midOffice: false, backOffice: false },
                 arch: {
                     presentation: { status: 'active', sub: "Model Bank Apps" },
                     banking: { status: 'active', sub: "Composable Banking Services" },
@@ -326,9 +330,10 @@
                     semantic: { status: 'hidden', sub: "NEXUS Semantic Data Mesh" },
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
-                    integration: { status: 'active', sub: "Grand Central", highlight: true },
+                    integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'active', sub: "Connector Studio", highlight: true },
                     cloudInfra: { status: 'active', sub: "BaaS" },
-                    agenticSdlc: { status: 'hidden', sub: "Connector Studio" }
+                    agenticSdlc: { status: 'hidden', sub: "AI DevOps" }
                 }
             },
             {
@@ -341,7 +346,7 @@
                 description: "Focus shifted to the 'factory' aspect of banking—improving how banks build, test, and deploy software at scale with best-in-class SDLC tooling.",
                 stats: ["Standardized Pipelines", "Cloud Scale"],
                 channels: { web: true, mobile: true, branch: true, callCenter: true },
-                frontline: { retail: true, sme: true, wealth: true, assisted: true },
+                frontline: { retail: true, sme: true, commercial: true, wealth: true, rm: true, frontOffice: false, midOffice: false, backOffice: true },
                 arch: {
                     presentation: { status: 'active', sub: "Model Bank Apps" },
                     banking: { status: 'active', sub: "Composable Banking Services" },
@@ -351,6 +356,7 @@
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'active', sub: "Connector Studio" },
                     cloudInfra: { status: 'active', sub: "BaaS", highlight: true },
                     agenticSdlc: { status: 'active', sub: "DevOps Toolchain" }
                 }
@@ -365,7 +371,7 @@
                 description: "Moving beyond chat. Agent Studio empowers non-technical users to create agents via drag-and-drop. Specialized agents emerged: Wealth RM Agent for relationship managers, Digital Assist for customer support, and Intelligent Process Automation (IPA) for loan processing and status inquiries.",
                 stats: ["Agent Studio", "IPA"],
                 channels: { web: true, mobile: true, branch: true, callCenter: true },
-                frontline: { retail: true, sme: true, wealth: true, assisted: true },
+                frontline: { retail: true, sme: true, commercial: true, wealth: true, rm: true, frontOffice: false, midOffice: false, backOffice: true },
                 arch: {
                     presentation: { status: 'active', sub: "AI Co-Pilots" },
                     banking: { status: 'active', sub: "Composable Banking Services" },
@@ -375,6 +381,7 @@
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'active', sub: "Connector Studio" },
                     cloudInfra: { status: 'active', sub: "BaaS" },
                     agenticSdlc: { status: 'active', sub: "DevOps Toolchain" }
                 }
@@ -389,7 +396,7 @@
                 description: "AI meets DevOps. Agentic SDLC automates product development—business analysis, coding, and QA. Connector Studio enables non-technical bank employees to build and publish integrations by processing documentation and API specs, dramatically accelerating third-party connections.",
                 stats: ["Connector Studio", "Agentic SDLC"],
                 channels: { web: true, mobile: true, branch: true, callCenter: true },
-                frontline: { retail: true, sme: true, wealth: true, assisted: true },
+                frontline: { retail: true, sme: true, commercial: true, wealth: true, rm: true, frontOffice: false, midOffice: false, backOffice: true },
                 arch: {
                     presentation: { status: 'active', sub: "AI Co-Pilots" },
                     banking: { status: 'active', sub: "Composable Banking Services" },
@@ -399,8 +406,9 @@
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'active', sub: "Connector Studio" },
                     cloudInfra: { status: 'active', sub: "BaaS" },
-                    agenticSdlc: { status: 'active', sub: "Connector Studio", highlight: true }
+                    agenticSdlc: { status: 'active', sub: "AI DevOps", highlight: true }
                 }
             },
             {
@@ -413,7 +421,7 @@
                 description: "The ultimate evolution. NEXUS provides the 'meaning'—a semantic graph that tells AI what is true, allowed, and possible for every customer.",
                 stats: ["Customer State Graph", "Autonomous Agents"],
                 channels: { web: true, mobile: true, branch: true, callCenter: true },
-                frontline: { retail: true, sme: true, wealth: true, assisted: true },
+                frontline: { retail: true, sme: true, commercial: true, wealth: true, rm: true, frontOffice: false, midOffice: false, backOffice: true },
                 arch: {
                     presentation: { status: 'active', sub: "AI Co-Pilots" },
                     banking: { status: 'active', sub: "Composable Banking Services" },
@@ -423,8 +431,9 @@
                     entitlements: { status: 'active', sub: "Access Control" },
                     security: { status: 'active', sub: "Identity" },
                     integration: { status: 'active', sub: "Grand Central" },
+                    marketplace: { status: 'active', sub: "Connector Studio" },
                     cloudInfra: { status: 'active', sub: "BaaS" },
-                    agenticSdlc: { status: 'active', sub: "Connector Studio" }
+                    agenticSdlc: { status: 'active', sub: "AI DevOps" }
                 }
             }
         ];
@@ -488,14 +497,14 @@
             </div>
         );
 
-        const FrontlineBadge = ({ label, active, isAssisted }) => (
+        const FrontlineBadge = ({ label, active, icon: Icon, isAssisted }) => (
             <div className={`
                 text-[10px] uppercase font-semibold tracking-wider px-2 py-2 rounded-lg border flex-1 text-center flex flex-col items-center justify-center gap-1.5 min-h-[54px]
                 ${active
                     ? 'bg-[#041E42] border-[#0066FF]/30 text-white shadow-sm'
                     : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#94A3B8]'}
             `} style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
-                {isAssisted ? <Headset size={12} className={active ? "text-[#00D4FF]" : ""} /> : (label.includes('Wealth') ? <Briefcase size={12} className={active ? "text-[#97B1FF]" : ""} /> : <Users size={12} className={active ? "text-[#97B1FF]" : ""} />)}
+                {Icon && <Icon size={12} className={active ? (isAssisted ? "text-[#00D4FF]" : "text-[#97B1FF]") : ""} />}
                 <span>{label}</span>
             </div>
         );
@@ -644,27 +653,40 @@
                                     <div className="flex-1 flex flex-col justify-end gap-1 relative bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-[0_4px_24px_rgba(0,0,0,0.04)] overflow-hidden h-full">
                                         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.015)_1px,transparent_1px)] bg-[size:24px_24px] rounded-2xl pointer-events-none"></div>
 
-                                        <div className="mb-4 shrink-0 z-10">
-                                            <div className="text-[10px] uppercase font-semibold text-[#94A3B8] mb-2 pl-1 flex items-center gap-2 tracking-wider">
-                                                Touchpoints
-                                            </div>
-                                            <div className="flex gap-2">
-                                                <ChannelBadge label="Web" active={activeData.channels.web} icon={Globe} />
-                                                <ChannelBadge label="Mobile" active={activeData.channels.mobile} icon={Smartphone} />
-                                                <ChannelBadge label="Branch" active={activeData.channels.branch} icon={Building} />
-                                                <ChannelBadge label="Call Center" active={activeData.channels.callCenter} icon={Phone} />
+                                        <div className="mb-3 shrink-0 z-10">
+                                            <div className="flex gap-4">
+                                                <div className="w-1/3">
+                                                    <div className="text-[10px] uppercase font-semibold text-[#94A3B8] mb-2 pl-1 flex items-center gap-2 tracking-wider">
+                                                        Self-Service
+                                                    </div>
+                                                    <div className="flex gap-1.5 h-[52px]">
+                                                        <ChannelBadge label="Web" active={activeData.channels.web} icon={Globe} />
+                                                        <ChannelBadge label="Mobile" active={activeData.channels.mobile} icon={Smartphone} />
+                                                    </div>
+                                                </div>
+                                                <div className="w-2/3">
+                                                    <div className="text-[10px] uppercase font-semibold text-[#94A3B8] mb-2 pl-1 flex items-center gap-2 tracking-wider">
+                                                        Assisted Channels
+                                                    </div>
+                                                    <div className="flex gap-1.5 h-[52px]">
+                                                        <ChannelBadge label="Branch" active={activeData.channels.branch} icon={Building} />
+                                                        <ChannelBadge label="Call Center" active={activeData.channels.callCenter} icon={Phone} />
+                                                        <ChannelBadge label="Relationship Manager" active={activeData.frontline.rm} icon={Target} />
+                                                        <ChannelBadge label="Back Office" active={activeData.frontline.backOffice} icon={Database} />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div className="mb-3 shrink-0 z-10">
                                             <div className="text-[10px] uppercase font-semibold text-[#94A3B8] mb-2 pl-1 flex items-center gap-2 tracking-wider">
-                                                Unified Frontline (Apps)
+                                                Lines of Business
                                             </div>
-                                            <div className="flex gap-2">
-                                                <FrontlineBadge label="Retail Apps" active={activeData.frontline.retail} />
-                                                <FrontlineBadge label="SME Apps" active={activeData.frontline.sme} />
-                                                <FrontlineBadge label="Wealth Apps" active={activeData.frontline.wealth} />
-                                                <FrontlineBadge label="Assisted" active={activeData.frontline.assisted} isAssisted={true} />
+                                            <div className="flex gap-2 w-full">
+                                                <div className="flex-1"><ChannelBadge label="Retail" active={activeData.frontline.retail} icon={Users} /></div>
+                                                <div className="flex-1"><ChannelBadge label="SME" active={activeData.frontline.sme} icon={Building} /></div>
+                                                <div className="flex-1"><ChannelBadge label="Commercial" active={activeData.frontline.commercial} icon={Building} /></div>
+                                                <div className="flex-1"><ChannelBadge label="Wealth" active={activeData.frontline.wealth} icon={Briefcase} /></div>
                                             </div>
                                         </div>
 
@@ -675,7 +697,17 @@
                                                 <ArchitectureLayer {...activeData.arch.automation} label="Process Automation Services" icon={Code} />
                                                 <ArchitectureLayer {...activeData.arch.agentic} label="Agentic Services" icon={Bot} />
                                                 <ArchitectureLayer {...activeData.arch.semantic} label="Semantic Services" icon={Brain} />
-                                                <ArchitectureLayer {...activeData.arch.integration} label="Integration Services" icon={Server} />
+                                                <div className="w-full flex gap-1.5">
+                                                    <div className="flex-1" style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}>
+                                                        <ArchitectureLayer {...activeData.arch.integration} label="Integration Services" icon={Server} />
+                                                    </div>
+                                                    <div
+                                                        className={activeData.arch.marketplace.status === 'hidden' ? 'flex-0 w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
+                                                        style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
+                                                    >
+                                                        <ArchitectureLayer {...activeData.arch.marketplace} label="Marketplace" icon={Layers} />
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div className="flex gap-1 shrink-0">
@@ -685,10 +717,16 @@
                                         </div>
 
                                         <div className="z-10 w-full flex gap-1.5">
-                                            <div className="flex-1">
+                                            <div
+                                                className={activeData.arch.cloudInfra.status === 'hidden' ? 'flex-0 w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
+                                                style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
+                                            >
                                                 <ArchitectureLayer {...activeData.arch.cloudInfra} label="Cloud Infrastructure" icon={Cloud} />
                                             </div>
-                                            <div className="flex-1">
+                                            <div
+                                                className={activeData.arch.agenticSdlc.status === 'hidden' ? 'flex-0 w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}
+                                                style={{ transition: 'all 0.5s cubic-bezier(0.625, 0.05, 0, 1)' }}
+                                            >
                                                 <ArchitectureLayer {...activeData.arch.agenticSdlc} label="Agentic SDLC" icon={Sparkles} />
                                             </div>
                                         </div>
