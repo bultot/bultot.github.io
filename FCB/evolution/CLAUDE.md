@@ -137,8 +137,8 @@ Based on Backbase product history:
 |------|---------------|
 | 2011 | Web, Presentation, Integration Services |
 | 2013 | Mobile, Retail LOB |
-| 2016 | Banking Services, **Entitlements** (Nov 2017 launch) |
-| 2019 | SME, Process Automation (Flow), **Identity** |
+| 2016 | Banking Services, **Entitlements** (Nov 2017 launch), **SME** |
+| 2019 | Process Automation (Flow), **Identity** |
 | 2022 | Wealth, RM, Marketplace, BaaS (€120M funding) |
 | 2023 | **Grand Central** (Oct 2023), Branch, Call Center, Back Office |
 | 2024 | **Commercial Banking**, Agent Studio |
