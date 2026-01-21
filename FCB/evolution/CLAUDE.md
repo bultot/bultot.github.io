@@ -17,7 +17,7 @@ Interactive timeline visualization of Backbase platform evolution (2011-2026). S
 | `App` | Main component, manages state and scroll handling |
 | `TimelineItem` | Individual year entry with intersection observer |
 | `ArchitectureLayer` | Horizontal layer box (Presentation, Banking, etc.) |
-| `VerticalArchitectureLayer` | Vertical pillar (Entitlements, Security) |
+| `VerticalArchitectureLayer` | Vertical pillar (Agentic SDLC on left, Entitlements/Security on right) |
 | `ChannelBadge` | Channel/LOB badge (Web, Mobile, Retail, etc.) |
 | `FrontlineBadge` | Legacy badge component (still used for some items) |
 
@@ -150,9 +150,30 @@ Based on Backbase product history:
 - Marketplace contains Connector Studio (tool within it)
 - BaaS launched Dec 2020, shown from 2022 (first timeline entry after)
 
+## Architecture Diagram Layout
+
+The architecture visualization uses a three-column flex layout:
+
+```
+[Left Pillar] [Horizontal Layers] [Right Pillars]
+   Agentic      Presentation        Entitlements
+   SDLC         Banking             Security
+                Automation
+                Agentic Services
+                Semantic Services
+                Integration | Marketplace
+                Managed Hosting (BaaS)
+```
+
+- **Left pillar**: Agentic SDLC (appears 2025+) - represents AI-powered development spanning all layers
+- **Center**: Core platform horizontal layers, ending with Managed Hosting (always full width)
+- **Right pillars**: Entitlements & Security - cross-cutting security concerns
+
 ## Gotchas
 
-- Split layers (Integration/Marketplace, BaaS/SDLC) use conditional width classes
+- Split layer (Integration/Marketplace) uses conditional width classes
+- Managed Hosting is always full width (not split with anything)
+- Agentic SDLC is a left vertical pillar, not a horizontal layer
 - Vertical pillars have rotated text via `writing-mode: vertical-rl`
 - First year shows all active items as "new" (no previous year to compare)
 - `highlight` prop shows the featured layer; `isNew` shows newly appeared layers
