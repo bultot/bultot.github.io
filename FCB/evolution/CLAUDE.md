@@ -135,15 +135,20 @@ Based on Backbase product history:
 
 | Year | Key Additions |
 |------|---------------|
-| 2011 | Web, Presentation, Integration |
+| 2011 | Web, Presentation, Integration Services |
 | 2013 | Mobile, Retail LOB |
 | 2016 | Banking Services, Entitlements, Security |
-| 2019 | SME, Process Automation |
-| 2022 | Wealth, RM, Marketplace, BaaS |
-| 2023 | Commercial, Branch, Call Center, Back Office, SDLC |
-| 2024 | Agentic Services |
-| 2025 | Agentic SDLC enhanced |
-| 2026 | Semantic Services (NEXUS) |
+| 2019 | SME, Process Automation (Flow) |
+| 2022 | Wealth, RM, Marketplace, BaaS (€120M funding) |
+| 2023 | **Grand Central** (Oct 2023), Branch, Call Center, Back Office |
+| 2024 | **Commercial Banking**, Agent Studio |
+| 2025 | **Agentic SDLC**, Connector Studio |
+| 2026 | Semantic Services (NEXUS) - Future Vision |
+
+**Important product naming:**
+- Integration Services → Grand Central (2023)
+- Marketplace contains Connector Studio (tool within it)
+- BaaS launched Dec 2020, shown from 2022 (first timeline entry after)
 
 ## Gotchas
 
