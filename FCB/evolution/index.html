@@ -561,6 +561,51 @@
             );
         };
 
+        // Mobile-optimized timeline item with compact cards
+        const MobileTimelineItem = ({ data, isActive, onVisible }) => {
+            const itemRef = useRef(null);
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) onVisible(data); }, { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" });
+                if (itemRef.current) observer.observe(itemRef.current);
+                return () => observer.disconnect();
+            }, [data, onVisible]);
+
+            return (
+                <div ref={itemRef} className={`mb-6 ${isActive ? 'opacity-100' : 'opacity-50'}`} style={{ transition: 'opacity 0.4s ease' }}>
+                    <div className={`glass-panel rounded-xl p-4 ${isActive ? 'border-l-4 border-l-[#0066FF] bg-white shadow-lg' : 'bg-white/90'}`}>
+                        <div className="flex items-center gap-2 mb-2">
+                            <span className={`text-xl font-bold ${isActive ? 'text-[#0066FF]' : 'text-[#94A3B8]'}`}>{data.year}</span>
+                            <span className="text-lg font-semibold text-[#0F172A]">{data.title}</span>
+                        </div>
+
+                        <div className="space-y-2">
+                            <div className="bg-[#F8FAFC] rounded-lg p-3 border-l-2 border-[#E2E8F0]">
+                                <div className="flex items-center gap-1.5 mb-1 text-[#64748B] text-[9px] font-semibold uppercase tracking-wider">
+                                    <Users size={10} /> Market Ask
+                                </div>
+                                <p className="text-[#475569] italic text-xs leading-relaxed">"{data.marketAsk}"</p>
+                            </div>
+
+                            <div className="bg-[#F0FDF4] rounded-lg p-3 border-l-2 border-[#10B981]">
+                                <div className="flex items-center gap-1.5 mb-1 text-[#059669] text-[9px] font-semibold uppercase tracking-wider">
+                                    <Target size={10} /> Impact
+                                </div>
+                                <p className="text-[#374151] font-medium text-xs leading-relaxed">{data.strategicImpact}</p>
+                            </div>
+
+                            <div className={`rounded-lg p-3 border-l-2 ${isActive ? 'bg-[#EFF6FF] border-l-[#0066FF]' : 'bg-[#F8FAFC] border-l-[#E2E8F0]'}`}>
+                                <div className={`flex items-center gap-1.5 mb-1 text-[9px] font-semibold uppercase tracking-wider ${isActive ? 'text-[#0066FF]' : 'text-[#64748B]'}`}>
+                                    <Zap size={10} /> Response
+                                </div>
+                                <p className="text-[#0F172A] text-sm font-semibold mb-1">{data.response}</p>
+                                <p className="text-[#64748B] text-xs leading-relaxed">{data.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
         // Helper to find previous year's data
         const getPreviousYearData = (currentYear) => {
             const currentIndex = timelineData.findIndex(d => d.year === currentYear);
@@ -649,9 +694,91 @@
                         </button>
                     </header>
 
-                    <div className="container mx-auto px-4 lg:px-8 pt-32 pb-32">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                            <div className="lg:col-span-6 relative">
+                    {/* Mobile Layout - Diagram with text overlay */}
+                    <div className="lg:hidden relative">
+                        {/* Sticky architecture diagram for mobile */}
+                        <div className="sticky top-16 z-10 bg-white">
+                            <div className="p-4 pb-2">
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="text-3xl font-bold text-[#041E42] tabular-nums">{activeData.year}</div>
+                                    <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] border border-[#E2E8F0] bg-[#F8FAFC] px-2 py-1 rounded-full">{activeData.era}</div>
+                                </div>
+
+                                <div className="bg-white rounded-xl p-3 border border-[#E2E8F0] shadow-sm">
+                                    {/* Channels row */}
+                                    <div className="flex gap-1 mb-2">
+                                        <div className="flex gap-1 flex-1">
+                                            <ChannelBadge label="Web" active={activeData.channels.web} icon={Globe} isNew={isNewChannel('web')} />
+                                            <ChannelBadge label="Mobile" active={activeData.channels.mobile} icon={Smartphone} isNew={isNewChannel('mobile')} />
+                                        </div>
+                                        <div className="flex gap-1 flex-1">
+                                            <ChannelBadge label="Branch" active={activeData.channels.branch} icon={Building} isNew={isNewChannel('branch')} />
+                                            <ChannelBadge label="Call" active={activeData.channels.callCenter} icon={Phone} isNew={isNewChannel('callCenter')} />
+                                        </div>
+                                    </div>
+
+                                    {/* LOB row */}
+                                    <div className="flex gap-1 mb-2">
+                                        <ChannelBadge label="Retail" active={activeData.frontline.retail} icon={Users} isNew={isNewFrontline('retail')} />
+                                        <ChannelBadge label="SME" active={activeData.frontline.sme} icon={Building} isNew={isNewFrontline('sme')} />
+                                        <ChannelBadge label="Comm" active={activeData.frontline.commercial} icon={Building} isNew={isNewFrontline('commercial')} />
+                                        <ChannelBadge label="Wealth" active={activeData.frontline.wealth} icon={Briefcase} isNew={isNewFrontline('wealth')} />
+                                    </div>
+
+                                    {/* Architecture layers - compact mobile version */}
+                                    <div className="flex gap-1">
+                                        {/* Left pillar */}
+                                        <div className="shrink-0">
+                                            <VerticalArchitectureLayer {...activeData.arch.agenticSdlc} label="SDLC" icon={Sparkles} isNew={isNewArch('agenticSdlc')} />
+                                        </div>
+
+                                        {/* Center layers */}
+                                        <div className="flex-1 flex flex-col gap-0.5">
+                                            <ArchitectureLayer {...activeData.arch.presentation} label="Presentation" icon={Layout} isNew={isNewArch('presentation')} />
+                                            <ArchitectureLayer {...activeData.arch.banking} label="Banking" icon={Database} isNew={isNewArch('banking')} />
+                                            <ArchitectureLayer {...activeData.arch.automation} label="Automation" icon={Code} isNew={isNewArch('automation')} />
+                                            <ArchitectureLayer {...activeData.arch.agentic} label="Agentic" icon={Bot} isNew={isNewArch('agentic')} />
+                                            <ArchitectureLayer {...activeData.arch.semantic} label="Semantic" icon={Brain} isNew={isNewArch('semantic')} />
+                                            <div className={`w-full flex ${activeData.arch.marketplace.status === 'hidden' ? 'gap-0' : 'gap-0.5'}`}>
+                                                <div className={activeData.arch.marketplace.status === 'hidden' ? 'w-full' : 'flex-1'}>
+                                                    <ArchitectureLayer {...activeData.arch.integration} label="Integration" icon={Server} isNew={isNewArch('integration')} />
+                                                </div>
+                                                <div className={activeData.arch.marketplace.status === 'hidden' ? 'w-0 overflow-hidden opacity-0' : 'flex-1 opacity-100'}>
+                                                    <ArchitectureLayer {...activeData.arch.marketplace} label="Marketplace" icon={Layers} isNew={isNewArch('marketplace')} />
+                                                </div>
+                                            </div>
+                                            <ArchitectureLayer {...activeData.arch.cloudInfra} label="Managed Hosting" icon={Cloud} isNew={isNewArch('cloudInfra')} />
+                                        </div>
+
+                                        {/* Right pillars */}
+                                        <div className="flex gap-0.5 shrink-0">
+                                            <VerticalArchitectureLayer {...activeData.arch.entitlements} label="Entitle" icon={Key} isNew={isNewArch('entitlements')} />
+                                            <VerticalArchitectureLayer {...activeData.arch.security} label="Security" icon={Shield} isNew={isNewArch('security')} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Timeline content overlay */}
+                        <div className="relative z-20 px-4 pb-32 -mt-2">
+                            <div className="mb-8 pt-4">
+                                <h1 className="text-2xl font-bold mb-2 text-[#041E42] leading-tight">Orchestrating <span className="text-gradient-blue">Banking's Future</span></h1>
+                                <p className="text-sm text-[#64748B] leading-relaxed">See how Backbase evolved into the AI-Native Banking Platform.</p>
+                            </div>
+                            {timelineData.map((item) => (
+                                <MobileTimelineItem key={item.year} data={item} isActive={activeData.year === item.year} onVisible={setActiveData} />
+                            ))}
+                            <div className="pt-8 pb-16 opacity-60 text-sm text-[#64748B] text-center">
+                                End of current timeline.
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Desktop Layout - Original side-by-side */}
+                    <div className="hidden lg:block container mx-auto px-4 lg:px-8 pt-32 pb-32">
+                        <div className="grid grid-cols-12 gap-12">
+                            <div className="col-span-6 relative">
                                 <div className="connector-line"></div>
                                 <div className="connector-line-active" style={{ height: `${scrolledPercent * 100}%` }}></div>
                                 <div className="space-y-8">
@@ -668,7 +795,7 @@
                                 </div>
                             </div>
 
-                            <div className="hidden lg:block lg:col-span-6">
+                            <div className="col-span-6">
                                 <div className="sticky top-32 h-[calc(100vh-160px)] flex flex-col">
                                     <div className="mb-6 flex items-center justify-between">
                                         <div>
