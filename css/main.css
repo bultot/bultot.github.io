@@ -474,6 +474,26 @@ HOBBIES
 MEDIA
 *******************************************/
 
+@media (max-width: 767px)
+{
+    .job .col-xs-2,
+    .job .col-xs-10
+    {
+        width: 100%;
+        float: none;
+    }
+
+    .job .col-xs-2
+    {
+        margin-bottom: 2px;
+    }
+
+    .job
+    {
+        margin-bottom: 20px;
+    }
+}
+
 @media (min-width: 500px)
 {
     #education .description
