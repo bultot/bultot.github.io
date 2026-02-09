@@ -479,18 +479,51 @@ MEDIA
     .job .col-xs-2,
     .job .col-xs-10
     {
-        width: 100%;
-        float: none;
+        width: 100% !important;
+        float: none !important;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .job .col-xs-2
     {
-        margin-bottom: 2px;
+        margin-bottom: 0;
+    }
+
+    .job .profession
+    {
+        margin-top: 2px;
     }
 
     .job
     {
         margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .job:last-child
+    {
+        border-bottom: none;
+    }
+
+    #education .year
+    {
+        width: auto;
+        float: none !important;
+        display: block;
+    }
+
+    #education .description
+    {
+        width: 100% !important;
+        float: none !important;
+        display: block;
+    }
+
+    #education .description:after
+    {
+        display: none;
     }
 }
 
