@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Cheat Sheet</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #FBF8F4; color: #2D3748; line-height: 1.5; padding: 2rem; max-width: 900px; margin: 0 auto; }
+  h1 { font-family: Georgia, serif; font-size: 2rem; color: #1A1A2E; margin-bottom: 0.3rem; }
+  .subtitle { color: #64748B; font-size: 0.95rem; margin-bottom: 2rem; }
+  h2 { font-family: Georgia, serif; font-size: 1.25rem; color: #1A1A2E; margin: 1.5rem 0 0.75rem; padding-bottom: 0.3rem; border-bottom: 2px solid #D97706; display: inline-block; }
+  h3 { font-size: 1rem; color: #D97706; margin: 1rem 0 0.5rem; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .card { background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .card-accent { border-top: 3px solid; }
+  .card-amber { border-color: #D97706; }
+  .card-teal { border-color: #0D9488; }
+  .card-navy { border-color: #2D3142; }
+  .card h3 { margin-top: 0; }
+  .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .tag-amber { background: #FEF3C7; color: #92400E; }
+  .tag-teal { background: #CCFBF1; color: #065F46; }
+  .tag-navy { background: #E2E8F0; color: #1E293B; }
+  table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  th { background: #1A1A2E; color: white; padding: 0.6rem 1rem; text-align: left; font-size: 0.85rem; }
+  td { padding: 0.5rem 1rem; border-bottom: 1px solid #F3F0EB; font-size: 0.9rem; }
+  tr:last-child td { border-bottom: none; }
+  code { background: #F3F0EB; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.85rem; font-family: 'SF Mono', Consolas, monospace; }
+  .tip { background: #FEF3C7; border-left: 3px solid #D97706; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 0.75rem 0; font-size: 0.9rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .prompt-example { background: #1A1A2E; color: #E2E8F0; padding: 0.75rem 1rem; border-radius: 6px; font-family: 'SF Mono', Consolas, monospace; font-size: 0.85rem; margin: 0.5rem 0; }
+  .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #E2E8F0; color: #64748B; font-size: 0.85rem; text-align: center; }
+  a { color: #D97706; }
+  ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+  li { margin-bottom: 0.3rem; font-size: 0.9rem; }
+  @media print {
+    body { padding: 1rem; font-size: 0.85rem; }
+    .card { box-shadow: none; border: 1px solid #E2E8F0; }
+    table { box-shadow: none; border: 1px solid #E2E8F0; }
+    h1 { font-size: 1.5rem; }
+  }
+  @media (max-width: 700px) {
+    .grid, .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Claude Cheat Sheet</h1>
+<p class="subtitle">Quick reference for Chat, Cowork & Code &mdash; keep this handy!</p>
+
+<div style="background:#EFF6FF; border-left:3px solid #3B82F6; padding:0.75rem 1rem; border-radius:0 6px 6px 0; margin:0.75rem 0; font-size:0.9rem;">
+  <strong>A note from Robin:</strong> I'm not an AI expert &mdash; just a colleague who's been exploring Claude and found it genuinely useful. This cheat sheet is me sharing what I've learned. Think of it as peer-to-peer, not a vendor pitch.
+</div>
+
+<h2>The Three Interfaces</h2>
+
+<div class="grid">
+  <div class="card card-accent card-amber">
+    <h3><span class="tag tag-amber">Chat</span></h3>
+    <p><strong>You think together.</strong></p>
+    <p>Brainstorming, writing, analysis, Q&A. Available in browser, desktop & mobile.</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;color:#64748B;">Best for: quick questions, content creation, analysis of pasted data</p>
+  </div>
+  <div class="card card-accent card-teal">
+    <h3><span class="tag tag-teal">Cowork</span></h3>
+    <p><strong>Claude works for you.</strong></p>
+    <p>Files, documents, tools, multi-step tasks. Runs in the desktop app.</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;color:#64748B;">Best for: creating deliverables, automating workflows, connecting tools</p>
+  </div>
+  <div class="card card-accent card-navy">
+    <h3><span class="tag tag-navy">Code</span></h3>
+    <p><strong>Claude builds with you.</strong></p>
+    <p>Terminal, IDE, entire codebases, tests, PRs. For developers.</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;color:#64748B;">Best for: writing code, debugging, refactoring, code reviews</p>
+  </div>
+</div>
+
+<h2>Claude vs Google: When to Use Which</h2>
+
+<table>
+  <tr><th>Use Claude when...</th><th>Use Google when...</th></tr>
+  <tr><td>You need to <strong>synthesize</strong> &mdash; combine, analyze, draw conclusions</td><td>You need a <strong>specific fact</strong> &mdash; phone number, address, hours</td></tr>
+  <tr><td>You need a <strong>first draft</strong> &mdash; email, report, summary, plan</td><td>You need a <strong>specific link</strong> &mdash; website, form, login page</td></tr>
+  <tr><td>You need to <strong>work with your data</strong> &mdash; analyze, reformat, transform</td><td>You're <strong>browsing</strong> &mdash; shopping, reviews, reading news</td></tr>
+  <tr><td>You need to <strong>iterate</strong> &mdash; keep refining until it's right</td><td>You need <strong>real-time info</strong> &mdash; stock prices, flight status, scores</td></tr>
+</table>
+
+<div class="tip">
+  <strong>Think of it this way:</strong> Google is a librarian who points you to the right book. Claude is a colleague who reads the book <em>for you</em> and gives you a summary.
+</div>
+
+<h2>Use Cases by Role</h2>
+
+<table>
+  <tr><th>If you're in...</th><th>Try asking Claude...</th></tr>
+  <tr><td><strong>HR</strong></td><td><code>Turn these interview notes into a structured scorecard with ratings</code></td></tr>
+  <tr><td><strong>Finance</strong></td><td><code>Analyze this expense report and flag anything unusual</code></td></tr>
+  <tr><td><strong>Marketing</strong></td><td><code>Rewrite this blog post for a more casual audience</code></td></tr>
+  <tr><td><strong>Project Mgmt</strong></td><td><code>Create a status update from these meeting notes</code></td></tr>
+  <tr><td><strong>IT / Support</strong></td><td><code>Draft a knowledge base article from this ticket thread</code></td></tr>
+  <tr><td><strong>Legal</strong></td><td><code>Summarize the key obligations in this contract (non-confidential)</code></td></tr>
+</table>
+
+<h2>Building Blocks</h2>
+
+<table>
+  <tr><th>Concept</th><th>What It Is</th><th>Analogy</th></tr>
+  <tr><td><strong>MCP</strong></td><td>Connects Claude to external tools (web search, Slack, databases, etc.)</td><td>USB-C adapter &mdash; universal connector</td></tr>
+  <tr><td><strong>Skills</strong></td><td>Instruction sets that give Claude expertise for specific tasks</td><td>A playbook for a new colleague</td></tr>
+  <tr><td><strong>Plugins</strong></td><td>Bundles of Skills + MCP + slash commands for a domain</td><td>Complete home office kit</td></tr>
+</table>
+
+<h2>CLI/Desktop vs API</h2>
+
+<div class="grid-2">
+  <div class="card card-accent card-teal">
+    <h3>Subscription (Chat / Cowork / Code)</h3>
+    <p><strong>You</strong> talk to Claude. Flat monthly fee.</p>
+    <ul>
+      <li>Pro $20/mo, Max, Team, Enterprise tiers</li>
+      <li>Use through Anthropic's own apps</li>
+      <li>Claude Code CLI = your dev co-pilot, not production infra</li>
+    </ul>
+  </div>
+  <div class="card card-accent card-navy">
+    <h3>API (pay-per-token)</h3>
+    <p><strong>Your software</strong> talks to Claude. Usage-based billing.</p>
+    <ul>
+      <li>Pay per input + output token</li>
+      <li>For building your own apps on top of Claude</li>
+      <li>Full control over parameters like temperature</li>
+    </ul>
+  </div>
+</div>
+
+<h2>How Claude "Thinks": Probability &amp; Temperature</h2>
+
+<div style="background:white; border-radius:8px; padding:1.2rem; box-shadow:0 1px 3px rgba(0,0,0,0.08); margin:0.75rem 0;">
+  <p>Claude is <strong>probabilistic</strong>, not deterministic. It predicts the most likely next word &mdash; so the same prompt can give slightly different answers each time. This isn't a bug, it's how LLMs work.</p>
+  <p style="margin-top:0.5rem;"><strong>Temperature</strong> is the "creativity dial":</p>
+  <table style="margin-top:0.5rem;">
+    <tr><th>Setting</th><th>Behaviour</th><th>Good for</th></tr>
+    <tr><td>Low (0)</td><td>Focused, consistent, predictable</td><td>Data extraction, classification, structured output</td></tr>
+    <tr><td>High (1)</td><td>Varied, creative, surprising</td><td>Brainstorming, creative writing, exploration</td></tr>
+  </table>
+  <div class="tip" style="margin-top:0.75rem;">
+    <strong>Key difference:</strong> In Chat, Cowork &amp; Code CLI, temperature is <strong>not configurable</strong> (Anthropic sets it). Via the <strong>API</strong>, you can set it yourself &mdash; crucial for production use cases where you need consistent, repeatable results.
+  </div>
+</div>
+
+<h2>Prompt Evolution: Bad &rarr; Decent &rarr; Great</h2>
+
+<table>
+  <tr><th>Level</th><th>Prompt</th><th>Why</th></tr>
+  <tr><td><span class="tag" style="background:#FEE2E2;color:#991B1B;">Bad</span></td><td>"Make a report"</td><td>No context, no format, no audience</td></tr>
+  <tr><td><span class="tag" style="background:#FEF3C7;color:#92400E;">Decent</span></td><td>"Summarize our Q4 results"</td><td>Better, but vague about format and depth</td></tr>
+  <tr><td><span class="tag" style="background:#D1FAE5;color:#065F46;">Great</span></td><td>"Create a one-page executive summary of Q4 results with revenue by region in a table, top 3 risks highlighted, and a recommendation section. Format as a Word doc."</td><td>Specific format, audience, structure, output</td></tr>
+</table>
+
+<div class="tip">
+  <strong>The formula:</strong> <em>What</em> do you need + <em>for whom</em> + <em>in what format</em>. You don't need essay-length prompts &mdash; just be specific.
+</div>
+
+<h2>Prompting Tips</h2>
+
+<div class="grid-2">
+  <div>
+    <h3>Do This ✓</h3>
+    <ul>
+      <li>Be specific about format and structure</li>
+      <li>Mention the output you want (Word doc, spreadsheet, etc.)</li>
+      <li>Iterate: "now make it shorter", "add a chart"</li>
+      <li>Give context: "This is for the executive team"</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Avoid This ✗</h3>
+    <ul>
+      <li>Vague one-liners without context</li>
+      <li>"Make it better" (better how?)</li>
+      <li>Multiple unrelated tasks in one prompt</li>
+      <li>Assuming Claude remembers previous sessions</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip">
+  <strong>Pro tip:</strong> Set up a <code>CLAUDE.md</code> file with your role, preferences, and recurring instructions. It applies to every session automatically &mdash; like setting your IDE preferences once.
+</div>
+
+<h2>Honest Limitations</h2>
+
+<table>
+  <tr><th>Limitation</th><th>What It Means for You</th></tr>
+  <tr><td><strong>No memory between sessions</strong></td><td>Each conversation starts fresh. Use <code>CLAUDE.md</code> for persistent context.</td></tr>
+  <tr><td><strong>Can hallucinate</strong></td><td>May confidently state things that aren't true. Always verify critical facts.</td></tr>
+  <tr><td><strong>No real-time data by default</strong></td><td>Doesn't know today's stock price &mdash; unless connected to web search via MCP.</td></tr>
+  <tr><td><strong>Not a search engine</strong></td><td>Works from training data + connected tools, not live web browsing by default.</td></tr>
+  <tr><td><strong>Confidential data risk</strong></td><td>Without Enterprise, data may be used for training. See disclaimer below.</td></tr>
+</table>
+
+<h2>Privacy Myth-Busting</h2>
+
+<table>
+  <tr><th>Myth</th><th>Reality</th></tr>
+  <tr><td>"Claude remembers everything I said last time"</td><td>Each session starts fresh. No memory of previous conversations.</td></tr>
+  <tr><td>"Claude is reading all my files"</td><td>Only the files in the folder you select. Nothing else on your computer.</td></tr>
+  <tr><td>"Cowork runs in the cloud"</td><td>Cowork runs in a sandbox on YOUR computer. But prompts/responses go through Anthropic's servers.</td></tr>
+  <tr><td>"AI will replace my job"</td><td>Claude is a tool that makes you faster &mdash; like email and spreadsheets before it.</td></tr>
+</table>
+
+<h2 style="color:#B91C1C;">Important: Data Disclaimer</h2>
+
+<div style="background:#FEF2F2; border-left:3px solid #B91C1C; padding:0.75rem 1rem; border-radius:0 6px 6px 0; margin:0.75rem 0;">
+  <strong style="color:#B91C1C;">We do not yet have an Enterprise account.</strong> Until Enterprise is active:
+  <ul style="margin-top:0.4rem;">
+    <li><strong>Do NOT share</strong> confidential company data, client information, or sensitive IP</li>
+    <li><strong>Safe to use:</strong> public information, personal learning, non-sensitive tasks</li>
+    <li>Enterprise is coming &mdash; once active, data stays private and is never used for training</li>
+  </ul>
+</div>
+
+<h2>Getting Started in 5 Minutes</h2>
+
+<table>
+  <tr><th>Step</th><th>Action</th><th>Where</th></tr>
+  <tr><td>1</td><td>Install Claude Desktop</td><td><a href="https://claude.ai/download">claude.ai/download</a></td></tr>
+  <tr><td>2</td><td>Enable Cowork mode</td><td>Settings → Feature Previews</td></tr>
+  <tr><td>3</td><td>Browse MCP connectors (web search, Firecrawl, etc.)</td><td>Cowork settings → Connectors</td></tr>
+  <tr><td>4</td><td>Select a folder</td><td>Click the folder icon in Cowork</td></tr>
+  <tr><td>5</td><td>Try your first task!</td><td>See "One Thing to Try" below</td></tr>
+</table>
+
+<h2>One Thing to Try Today</h2>
+
+<div class="grid">
+  <div class="card card-accent card-amber">
+    <h3>Everyone</h3>
+    <p>Open Cowork, select your Documents folder, and ask:</p>
+    <div class="prompt-example" style="font-size:0.8rem;">"Summarize the last 5 files I worked on"</div>
+  </div>
+  <div class="card card-accent card-teal">
+    <h3>Power Users</h3>
+    <p>Ask Cowork to research something online and save it:</p>
+    <div class="prompt-example" style="font-size:0.8rem;">"Research [topic] and save a one-page briefing to my folder"</div>
+  </div>
+  <div class="card card-accent card-navy">
+    <h3>Developers</h3>
+    <p>Install Claude Code, cd into a project, and ask:</p>
+    <div class="prompt-example" style="font-size:0.8rem;">"What does this codebase do?"</div>
+  </div>
+</div>
+
+<h2>What You Can Ask Cowork To Do</h2>
+
+<table>
+  <tr><th>Task</th><th>Example Prompt</th></tr>
+  <tr><td>Research &amp; summarize</td><td><code>Research [topic] and save a one-page briefing to my folder</code></td></tr>
+  <tr><td>Create documents</td><td><code>Turn these notes into a professional Word report</code></td></tr>
+  <tr><td>Build dashboards</td><td><code>Create an interactive HTML dashboard from this CSV</code></td></tr>
+  <tr><td>Analyze files</td><td><code>Look at the files in my folder and summarize what you find</code></td></tr>
+</table>
+
+<h2>Key Links</h2>
+
+<table>
+  <tr><th>Resource</th><th>URL</th></tr>
+  <tr><td>Claude (chat)</td><td><a href="https://claude.ai">claude.ai</a></td></tr>
+  <tr><td>Download Desktop App</td><td><a href="https://claude.ai/download">claude.ai/download</a></td></tr>
+  <tr><td>Claude Code Docs</td><td><a href="https://code.claude.com/docs">code.claude.com/docs</a></td></tr>
+  <tr><td>Prompting Guide</td><td><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">docs.claude.com</a></td></tr>
+  <tr><td>MCP Servers Directory</td><td><a href="https://github.com/modelcontextprotocol/servers">github.com/modelcontextprotocol/servers</a></td></tr>
+</table>
+
+<div class="footer">
+  Brown Bag Session &mdash; Getting to Know Claude &bull; Prepared by Robin
+</div>
+
+</body>
+</html>
