@@ -470,6 +470,40 @@ HOBBIES
     left: 7px;
 }
 
+.logo-strip
+{
+    text-align: center;
+    padding: 10px 0 5px;
+}
+
+.logo-img
+{
+    display: inline-block;
+    height: 32px;
+    max-width: 180px;
+    margin: 14px 22px;
+    vertical-align: middle;
+    -webkit-filter: grayscale(1) opacity(0.55);
+    filter: grayscale(1) opacity(0.55);
+    -webkit-transition: -webkit-filter 0.2s;
+    transition: filter 0.2s;
+}
+
+.logo-img:hover
+{
+    -webkit-filter: none;
+    filter: none;
+}
+
+.logo-more
+{
+    display: block;
+    margin-top: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #a9a9a9;
+}
+
 /*******************************************
 MEDIA
 *******************************************/
